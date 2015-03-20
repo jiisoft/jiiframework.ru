@@ -1,0 +1,53 @@
+
+.example-container {
+    
+    .example-nav-container {
+        font-size: 13px;
+        font-weight: 500;
+
+        li.directory {
+            margin-top: 5px;
+        }
+
+        li > a, li > span {
+            position: relative;
+            display: block;
+            padding: 4px 10px;
+            border: 0;
+            color: #767676;
+        }
+        li > span {
+            color: #337ab7;
+            .glyphicon {
+                padding-right: 3px;
+                color: #767676;
+            }
+        }
+        .active a {
+            &, &:hover, &:focus, &:active {
+                color: #337ab7;
+                border: 0;
+                background-color: #eee;
+            }
+        }
+    }
+    
+    .example-source-container {
+        pre {
+            font-size: 12px;
+            line-height: 16px;
+        }
+    }
+    
+    .nav-tabs {
+        border-bottom: none;
+        margin-bottom: 30px;
+
+    }
+
+    .alert {
+        h3 {
+            margin-top: 0;
+        }
+    }
+}

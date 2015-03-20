@@ -1,0 +1,58 @@
+<%
+"use strict";
+
+/** @typedef {String} content */
+/** @this {Jii.view.WebView} */
+(function() {
+
+app.assets.AppAsset.register(this);
+%>
+<!DOCTYPE html>
+<html lang="<%= Jii.app.language %>">
+<head>
+    <meta charset="<%- Jii.app.charset %>">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <title><%- this.title %></title>
+    <%= this.head() %>
+</head>
+<body>
+<%= this.beginBody() %>
+
+<nav class="navbar navbar-default">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/"><span>Jii</span> Framework</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="/">Главная</a></li>
+                <li><a href="/guide">Мануал</a></li>
+                <li><a href="https://github.com/jiisoft" target="_blank">GitHub</a></li>
+                <li><a href="/contact">Контакты</a></li>
+                <li class="download">
+                    <a href="/guide/start-installation">
+                        <span class="glyphicon glyphicon glyphicon-download"></span>
+                        Версия v<%- Jii.getVersion() %>
+                    </a>
+                </li>
+            </ul>
+            <% this.registerJs(function() {
+                var hrefRule = location.pathname === '/' ? '="/"' : '^="' + location.pathname + '"';
+                jQuery('#navbar a[href' + hrefRule + ']').parent('li:not(.download)').addClass('active');
+            }) %>
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>
+
+<%= content %>
+
+<footer class="container">
+    &copy; 2015 Jii Software
+</footer>
+
+<%= this.endBody() %>
+</body>
+</html>
+
+<% }).call(this) %>

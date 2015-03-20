@@ -1,0 +1,71 @@
+<%
+"use strict";
+
+/** @this {Jii.view.WebView} */
+(function() {
+%>
+<div data-spy="affix__disable" data-offset-top="50">
+    <ul class="nav doc-nav">
+        <li>
+            <span>Введение</span>
+            <ul class="nav">
+                <li class="todo"><a href="/guide/intro-jii">Обзор Jii</a></li>
+                <li><a href="/guide/intro-ideology">Идеология</a></li>
+            </ul>
+        </li>
+        <li>
+            <span>Первое знакомство</span>
+            <ul class="nav">
+                <li><a href="/guide/start-installation">Установка</a></li>
+                <li class="todo"><a href="/guide/start-hello">Создание "Hello World"</a></li>
+            </ul>
+        </li>
+        <li>
+            <span>Структура приложения</span>
+            <ul class="nav">
+                <li><a href="/guide/structure">Обзор</a></li>
+                <li><a href="/guide/structure-applications">Приложения</a></li>
+                <li><a href="/guide/structure-application-components">Компоненты приложения</a></li>
+                <li><a href="/guide/structure-context-components">Компоненты контекста</a></li>
+                <li><a href="/guide/structure-controllers">Контроллеры</a></li>
+                <li><a href="/guide/structure-modules">Модули</a></li>
+                <li class="todo"><a href="/guide/structure-models">Модели</a></li>
+                <li class="todo"><a href="/guide/structure-views">Представления</a></li>
+                <li class="todo"><a href="/guide/structure-assets">Публикация ресурсов</a></li>
+            </ul>
+        </li>
+        <li>
+            <span>Основные понятия</span>
+            <ul class="nav">
+                <li><a href="/guide/concept-components">Компоненты</a></li>
+                <li><a href="/guide/concept-properties">Свойства</a></li>
+                <li><a href="/guide/concept-events">События</a></li>
+                <li><a href="/guide/concept-behaviors">Поведения</a></li>
+                <li><a href="/guide/concept-configurations">Конфигурации</a></li>
+                <li><a href="/guide/concept-aliases">Псевдонимы</a></li>
+            </ul>
+        </li>
+        <li class="todo">
+            <span>Работа с базами данных</span>
+            <ul class="nav">
+                <li><a href="/guide/db-query-builder">Построитель запросов</a></li>
+                <li><a href="/guide/db-active-record">Active Record</a></li>
+            </ul>
+        </li>
+        <li class="todo">
+            <span>Обработка запросов</span>
+            <ul class="nav">
+                <li><a href="/guide/runtime-bootstrapping">Предзагрузка</a></li>
+                <li><a href="/guide/runtime-requests">Запросы</a></li>
+                <li><a href="/guide/runtime-responses">Ответы</a></li>
+                <li><a href="/guide/runtime-url-handling">Разбор и генерация URL</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+
+<% this.registerJs(function() {
+    jQuery('.doc-nav a[href="' + location.pathname + '"]').parent('li').addClass('active');
+}) %>
+
+<% }).call(this) %>

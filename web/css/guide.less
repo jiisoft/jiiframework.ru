@@ -1,0 +1,46 @@
+
+.docs-nav-container {
+    .nav {
+        width: 250px;
+
+        a, span {
+            display: block;
+            padding: 4px 20px;
+            font-size: 13px;
+            font-weight: 500;
+            color: #767676;
+        }
+        span {
+            color: #337ab7;
+        }
+        .active > a {
+            background-color: #eee;
+        }
+
+        .nav {
+            margin-bottom: 10px;
+            padding-left: 20px;
+        }
+    }
+    .affix {
+        top: 20px;
+    }
+    .todo {
+        &, * {
+            color: #ddd !important;
+        }
+
+        a:before {
+            content: 'TODO';
+            display: inline-block;
+            font-size: 7px;
+            font-weight: bold;
+            position: relative;
+            top: -1px;
+
+            margin-left: -26px;
+            padding-right: 5px;
+            color: #d1e2ee;
+        }
+    }
+}

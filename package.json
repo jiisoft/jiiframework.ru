@@ -1,0 +1,18 @@
+{
+  "name": "jiiframework.ru",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "jii": "*",
+    "jii-httpserver": "*",
+    "jii-model": "*",
+    "jii-view": "*",
+    "jii-boilerplate-hello": "*",
+    "require-all": "0.0.8",
+    "markdown-it": "^3.1.0",
+    "highlight.js": "^8.4.0"
+  },
+  "devDependencies": {
+    "gulp": "^3.8.11"
+  }
+}
