@@ -7,7 +7,7 @@
     "jii-httpserver": "*",
     "jii-model": "*",
     "jii-view": "*",
-    "jii-boilerplate-hello": "*",
+    "jii-client": "*",
     "require-all": "0.0.8",
     "markdown-it": "^3.1.0",
     "highlight.js": "^8.4.0"
