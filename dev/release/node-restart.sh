@@ -1,7 +1,7 @@
 #!/bin/bash
 
 RUNTIME_DIR="$(dirname $(readlink -f $0))"
-PROJECT_DIR="$(dirname $(readlink -f ${RUNTIME_DIR}/../../..))"
+PROJECT_DIR="$(dirname $(readlink -f ${RUNTIME_DIR}/../..))"
 
 NAME="JiiFramework.ru Node JS Application"
 NODE_BIN_DIR=/usr/bin
