@@ -1,11 +1,10 @@
 #!/bin/bash
 
 RUNTIME_DIR="$(dirname $(readlink -f $0))"
-PROJECT_DIR="$(dirname $(readlink -f ${RUNTIME_DIR}/../../../..))"
+PROJECT_DIR="$(dirname $(readlink -f ${RUNTIME_DIR}/../../..))"
 
 NAME="JiiFramework.ru Node JS Application"
 NODE_BIN_DIR=/usr/bin
-NODE_PATH=/opt/nodejs/node_modules
 APPLICATION_DIR=${PROJECT_DIR}/htdocs
 APPLICATION_START=${APPLICATION_DIR}/index.js
 PIDFILE=${PROJECT_DIR}/tmp/node.pid
@@ -13,7 +12,6 @@ LOGFILE=${PROJECT_DIR}/tmp/node.log
 
 # Add node to the path for situations in which the environment is passed.
 PATH=${NODE_BIN_DIR}:$PATH
-export NODE_PATH=${NODE_PATH}
 
 start() {
     echo "Starting $NAME"
