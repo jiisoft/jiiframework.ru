@@ -149,7 +149,7 @@ var maxPostCount = module.params.maxPostCount;
     },
 
     modules: {
-        'debug' => 'yii\debug\Module'
+        'debug' => 'jii.debug.Module'
     }
 }
 ```
