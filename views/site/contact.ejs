@@ -4,6 +4,8 @@
 /** @typedef {String} content */
 /** @this {Jii.view.WebView} */
 (function() {
+this.title = 'Контакты';
+
 %>
 
 <div class="container container-fluid">
@@ -18,8 +20,29 @@
             <p>Идея и реализация. Пока что единственный разработчик Jii</p>
             <p>
                 Ведущий веб-разработчик в компании <a href="http://extpoint.com">ExtPoint</a>
-                <br />Контакты и подробнее на <a href="http://affka.ru">affka.ru</a>
             </p>
+            <ul class="contact-links">
+                <li>
+                    <a href="mailto:affka@affka.ru" target="_blank">
+                        <img src="/img/icon32-email.png" width="24" height="24" alt="Написать письмо на affka@affka.ru" />
+                    </a>
+                </li>
+                <li>
+                    <a href="http://www.affka.ru" target="_blank">
+                        <img src="/img/icon32-link.png" width="24" height="24" alt="Сайт: affka.ru" />
+                    </a>
+                </li>
+                <li>
+                    <a href="skype:affka.kras" target="_blank">
+                        <img src="/img/icon32-skype.png" width="24" height="24" alt="Skype: affka.kras" />
+                    </a>
+                </li>
+                <li>
+                    <a href="https://vk.com/affka" target="_blank">
+                        <img src="/img/icon32-vk.png" width="24" height="24" alt="VK" />
+                    </a>
+                </li>
+            </ul>
         </div>
     </div>
     <div class="media">

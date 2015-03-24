@@ -13,7 +13,7 @@ app.assets.AppAsset.register(this);
     <meta charset="<%- Jii.app.charset %>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="/favicon.ico" />
-    <title><%- this.title %></title>
+    <title><%- this.title ? this.title + ' — ' : '' %>Jii Framework</title>
     <%= this.head() %>
 </head>
 <body>
