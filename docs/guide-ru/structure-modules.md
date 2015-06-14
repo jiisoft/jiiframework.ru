@@ -187,5 +187,5 @@ Jii.defineClass('app.modules.forum.Module', /** @lends app.modules.forum.Module.
 маршрут `forum/admin/dashboard/index` соответствует действию `index` контроллера `dashboard` модуля `admin`,
 который в свою очередь является дочерним модулем модуля `forum`.
 
-> Информация: Метод [[Jii.base.Module.getModule()|getModule()]] возвращает только те дочерние модули,
+> Информация: Метод [[Jii.base.Module.getModule()]] возвращает только те дочерние модули,
  которые принадлежат родительскому модулю непосредственно.

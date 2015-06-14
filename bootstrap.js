@@ -2,6 +2,7 @@ global.Jii = require('jii');
 require('jii-httpserver');
 require('jii-model');
 require('jii-view');
+require('jii-assets');
 
 global.app = Jii.namespace('app');
 require('require-all')(__dirname + '/assets');
@@ -29,7 +30,7 @@ Jii.createWebApplication({
 				className: 'Jii.view.ServerWebView'
 			},
 			assetManager: {
-				className: 'Jii.view.AssetManager',
+				className: 'Jii.assets.AssetManager',
 				bundles: {
 					'app.assets.AppAsset': {},
 					'app.assets.BootstrapAsset': {},

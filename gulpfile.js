@@ -1,7 +1,7 @@
 require('./bootstrap');
-require('jii-client');
+require('jii-assets');
 
 var gulp = require('gulp');
-var tasks = Jii.client.GulpTasks.applyTo(gulp);
+var tasks = Jii.assets.GulpTasks.applyTo(gulp);
 
 gulp.task('default', tasks);

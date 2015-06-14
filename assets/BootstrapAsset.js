@@ -3,16 +3,15 @@
  * @license MIT
  */
 
-var fs = require('fs');
 var Jii = require('jii');
 
 /**
  * @class app.assets.BootstrapAsset
- * @extends Jii.view.AssetBundle
+ * @extends Jii.assets.AssetBundle
  */
 var self = Jii.defineClass('app.assets.BootstrapAsset', {
 
-	__extends: Jii.view.AssetBundle,
+	__extends: Jii.assets.AssetBundle,
 
 	basePath: '@webroot/lib/bootstrap',
 	baseUrl: '@web/lib/bootstrap',
