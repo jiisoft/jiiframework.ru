@@ -15,6 +15,3 @@ git clone https://github.com/jiisoft/jii-boilerplate-hello
 cd jii-boilerplate-hello
 npm install
 ```
-
-## Установка из пакетного менеджера
-Установка базового пакета
