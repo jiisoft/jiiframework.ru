@@ -43,7 +43,7 @@ Jii.defineClass('app.controllers.PostController', /** @lends app.controllers.Pos
     actionCreate: function(context) {
         var model = new app.models.Post();
         
-		Jii.when.resolve().then(function() {
+		Promise.resolve().then(function() {
 			// Save user
 			if (context.request.isPost()) {
 				model.setAttributes(context.request.post());
