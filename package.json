@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "jii": "*",
+    "jii-urlmanager": "*",
     "jii-httpserver": "*",
     "jii-model": "*",
     "jii-view": "*",

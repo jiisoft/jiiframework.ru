@@ -1,7 +1,7 @@
 module.exports = {
     workers: 2,
     application: {
-        basePath: __dirname,
+        basePath: __dirname + '/..',
         components: {
             urlManager: {
                 className: 'Jii.urlManager.UrlManager',
@@ -14,7 +14,7 @@ module.exports = {
             },
             http: {
                 className: 'Jii.httpServer.HttpServer',
-                staticDirs: __dirname + '/web/'
+                staticDirs: __dirname + '/../web/'
             },
             view: {
                 className: 'Jii.view.ServerWebView'
