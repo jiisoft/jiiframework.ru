@@ -9,11 +9,4 @@ require('require-all')(__dirname + '/assets');
 require('require-all')(__dirname + '/controllers');
 require('require-all')(__dirname + '/models');
 
-var custom = require('./config');
-
-require('jii-workers')
-    .setEnvironment(custom.environment)
-    .application(Jii.mergeConfigs(
-        require('./config/main'),
-        custom.main
-    ));
+Jii.createWebApplication(require('./config/main'));
