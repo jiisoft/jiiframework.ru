@@ -3,16 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "highlight.js": "^8.4.0",
     "jii": "*",
-    "jii-urlmanager": "*",
+    "jii-assets": "*",
     "jii-httpserver": "*",
     "jii-model": "*",
+    "jii-urlmanager": "*",
     "jii-view": "*",
-    "jii-assets": "*",
     "jii-workers": "*",
-    "require-all": "0.0.8",
     "markdown-it": "^3.1.0",
-    "highlight.js": "^8.4.0"
+    "require-all": "0.0.8"
   },
   "devDependencies": {
     "gulp": "^3.8.11"
