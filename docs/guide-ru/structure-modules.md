@@ -149,7 +149,7 @@ var maxPostCount = module.params.maxPostCount;
     },
 
     modules: {
-        'debug' => 'jii.debug.Module'
+        debug: 'app.debug.Module'
     }
 }
 ```
@@ -170,12 +170,12 @@ Jii.defineClass('app.modules.forum.Module', /** @lends app.modules.forum.Module.
     __extends: Jii.base.Module,
 
     init: function(context) {
-        this.modules = {
+        this.setModules({
             admin: {
                 // здесь имеет смысл использовать более лаконичное пространство имен
-                className => 'app.modules.forum.modules.admin.Module',
+                className: 'app.modules.forum.modules.admin.Module'
             }
-        }
+        });
         
         return this.__super();
     }

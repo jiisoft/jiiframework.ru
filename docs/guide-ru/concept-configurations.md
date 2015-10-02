@@ -86,22 +86,23 @@ Jii.configure(object, config);
 
 ```js
 var config = {
-    id: 'basic',
-    basePath: __dirname,
-    components': {
-        urlManager: {
-            className: 'Jii.urlManager.UrlManager',
-            rules: {
-                '': 'site/index',
-                'guide': 'site/guide',
-                'guide/<page>': 'site/guide'
+    application: {
+        basePath: __dirname,
+        components': {
+            urlManager: {
+                className: 'Jii.urlManager.UrlManager',
+                rules: {
+                    '': 'site/index',
+                    'guide': 'site/guide',
+                    'guide/<page>': 'site/guide'
+                }
+            },
+            http: {
+                className: 'Jii.httpServer.HttpServer'
+            },
+            view: {
+                className: 'Jii.view.ServerWebView'
             }
-        },
-        http: {
-            className: 'Jii.httpServer.HttpServer'
-        },
-        view: {
-            className: 'Jii.view.ServerWebView'
         }
     }
 };
