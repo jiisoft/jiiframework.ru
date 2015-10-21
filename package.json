@@ -3,14 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "bootstrap": "^3.3.5",
+    "gulp-easy": "^0.1.7",
     "highlight.js": "^8.4.0",
     "jii": "*",
-    "jii-assets": "*",
     "jii-httpserver": "*",
     "jii-model": "*",
     "jii-urlmanager": "*",
     "jii-view": "*",
     "jii-workers": "*",
+    "jquery": "^2.1.4",
     "markdown-it": "^3.1.0",
     "require-all": "0.0.8"
   },

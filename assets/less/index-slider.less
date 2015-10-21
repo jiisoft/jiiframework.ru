@@ -1,0 +1,97 @@
+@import '../../node_modules/bootstrap/less/variables';
+
+.slide {
+    position: relative;
+    width: 100%;
+    background: #110704;
+    overflow: visible;
+    margin-bottom: 25px;
+    border-bottom: solid 5px #eadb50;
+    max-height: 500px;
+
+    img {
+        width: 100%;
+        max-width: 1600px;
+        margin: 0 auto;
+
+        display: none;
+        @media (min-width: @screen-sm-min) {
+            display: block;
+        }
+    }
+
+    .text-slogan {
+        font-weight: bold;
+        text-align: center;
+
+        padding: 30px;
+        @media (min-width: @screen-sm-min) {
+            padding: 0;
+
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            text-align: right;
+            margin-top: -80px;
+        }
+
+        font-size: 38px;
+        margin-left: 4%;
+        @media (max-width: 1200px) {
+            font-size: 28px;
+            margin-left: -2%;
+        }
+
+        span {
+            display: inline-block;
+            background-color: #eadb50;
+            padding: 5px 10px;
+        }
+    }
+
+    .text-about, .text-about-border {
+
+        @media (min-width: @screen-sm-min) {
+            height: 96px;
+        }
+        @media (min-width: @screen-md) {
+            position: absolute;
+            bottom: -16px;
+            left: 50%;
+            margin-left: -350px;
+            width: 610px;
+
+            .container {
+                width: auto !important;
+            }
+        }
+        @media (min-width: @screen-lg) {
+            left: 50%;
+            margin-left: -500px;
+            width: 610px;
+        }
+
+        background: #fff;
+        padding: 20px;
+
+        p {
+            margin: 0 0 3px;
+        }
+    }
+    .text-about-border {
+        display: none;
+        @media (min-width: @screen-md) {
+            margin-left: -355px;
+            display: block;
+        }
+        @media (min-width: @screen-lg) {
+            margin-left: -505px;
+        }
+
+        bottom: 0;
+        border: solid 5px #eadb50;
+        margin-top: -45px;
+        width: 620px;
+        height: 85px;
+    }
+}
