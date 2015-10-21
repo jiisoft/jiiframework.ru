@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 global.Jii = require('jii');
 require('jii-httpserver');
 require('jii-model');
@@ -17,3 +19,4 @@ require('jii-workers')
         require('./config/main'),
         custom.main
     ));
+

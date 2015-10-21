@@ -67,6 +67,21 @@ Jii.defineClass('app.controllers.SiteController', /** @lends app.controllers.Sit
 	 * @param {Jii.httpServer.Request} context.request
 	 * @param {Jii.httpServer.Response} context.response
 	 */
+	actionDevelopment: function(context) {
+		var mdContent = fs.readFileSync(Jii.getAlias('@app/docs/development-ru/' + context.request.get('page', 'contribute') + '.md')).toString();
+
+		context.response.data = this.render('guide', {
+			content: markdown.render(mdContent)
+		});
+		context.response.send();
+	},
+
+	/**
+	 *
+	 * @param {Jii.base.Context} context
+	 * @param {Jii.httpServer.Request} context.request
+	 * @param {Jii.httpServer.Response} context.response
+	 */
 	actionContact: function(context) {
 		context.response.data = this.render('contact');
 		context.response.send();
