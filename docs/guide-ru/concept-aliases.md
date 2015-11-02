@@ -30,7 +30,7 @@ Jii.setAlias('@bar', 'http://www.example.com');
 Jii.setAlias('@foobar', '@foo/bar');
 ```
 
-Корневые псевдонимы, как правило, создаются на этапе [предварительной загрузки (bootstrapping)](runtime-bootstrapping).
+Корневые псевдонимы, как правило, создаются на этапе предварительной загрузки (bootstrapping).
 Для удобства, в [приложении (Application)](structure-applications) предусмотрено свойство `aliases`, которое можно
 задать через [конфигурацию приложения](concept-configurations):
 

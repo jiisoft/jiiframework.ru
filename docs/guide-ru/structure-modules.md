@@ -137,22 +137,6 @@ var module = Jii.app.getModule('forum');
 var maxPostCount = module.params.maxPostCount;
 ```
 
-### Предзагрузка модулей <span id="bootstrapping-modules"></span>
-
-Может потребоваться запускать некоторые модули при каждом запросе.
-Например, следующая конфигурация приложения обеспечивает загрузку модуля `debug` в самом начале запуска приложения (воркера):
-
-```js
-{
-    bootstrap: {
-        'debug'
-    },
-
-    modules: {
-        debug: 'app.debug.Module'
-    }
-}
-```
 
 ## Вложенные модули <span id="nested-modules"></span>
 

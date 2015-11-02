@@ -2,6 +2,8 @@ module.exports = {
     workers: 2,
     application: {
         basePath: __dirname + '/..',
+        language: 'en',
+        sourceLanguage: 'ru',
         components: {
             urlManager: {
                 className: 'Jii.urlManager.UrlManager',

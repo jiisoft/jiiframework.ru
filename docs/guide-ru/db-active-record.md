@@ -71,7 +71,7 @@ Jii.defineClass('app.models.Customer', /** @lends app.models.Customer.prototype 
 [Database Access Objects](db-dao), вы можете сконфигурировать компонент приложения `db` следующим образом: 
 
 ```js
-return {
+application: {
     components: {
         db: {
             className: 'Jii.sql.mysql.Connection',
@@ -82,7 +82,7 @@ return {
             charset: 'utf8',
         }
     }
-};
+}
 ```
 
 Если вы хотите использовать другое соединение с базой данных, вы должны переопределить метод
@@ -632,7 +632,7 @@ app.models.Customer.find()
 ```
 
 Вы можете загрузить вместе с основной записью одно или несколько отношений. Вы даже можете загрузить сразу и
-вложенные отношения. Например, если `app.models.Customer` связан с` app.models.Order` через отношение `orders`, а
+вложенные отношения. Например, если `app.models.Customer` связан с `app.models.Order` через отношение `orders`, а
 `app.models.Order` связан с `Item` через `items`. При запросе `app.models.Customer`, вы можете сразу загрузить
 отношение `items` указав в методе [[with()]] `orders.items`.
 

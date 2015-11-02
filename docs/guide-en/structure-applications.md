@@ -1,17 +1,19 @@
+Applications
+============
 
-## Приложения
-
-Приложения это объекты, которые управляют всей структурой и жизненным циклом прикладной системы Jii.
+Applications are objects that govern the overall structure and lifecycle of Jii application systems.
 Обычно на один воркер (процесс) Node.js приходит один экземпляр приложения Jii, который доступен через `Jii.app`.
 
-## Конфигурации приложения <span id="application-configurations"></span>
 
-Когда входной скрипт создаёт приложение, он загрузит конфигурацию и применит её к приложению, например:
+## Application Configurations <span id="application-configurations"></span>
+
+When an entry script creates an application, it will load a [configuration](concept-configurations) and
+apply it to the application, as follows:
 
 ```js
 var Jii = require('jii');
 
-// загрузка конфигурации приложения
+// load application configuration
 var config = {
 	application: {
 		basePath: __dirname,
@@ -30,7 +32,7 @@ var config = {
 	}
 };
 
-// создание объекта приложения и его конфигурирование
+// create application object
 Jii.createWebApplication(config);
 ```
 
@@ -43,8 +45,10 @@ Jii.createWebApplication(config);
 Из-за того, что конфигурация приложения часто является очень сложной, она выносится в файлы и разбивается на
 несколько конфигурационных файлов.
 
-## Свойства приложений <span id="application-properties"></span>
 
-Существует много важных свойств приложения, которые вы настраиваете в конфигурациях приложения. Эти свойства обычно
-описывают окружение, в котором работает приложение. Например, приложение должно знать каким образом загружать
-контроллеры, где хранить временные файлы, и т. д.
+## Application Properties <span id="application-properties"></span>
+
+There are many important application properties that you should configure in application configurations.
+These properties typically describe the environment that applications are running in.
+For example, applications need to know how to load [controllers](structure-controllers),
+where to store temporary files, etc. In the following, we will summarize these properties.

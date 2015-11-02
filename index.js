@@ -7,9 +7,8 @@ require('jii-view');
 require('jii-assets');
 
 global.app = Jii.namespace('app');
-require('require-all')(__dirname + '/assets');
-require('require-all')(__dirname + '/controllers');
-require('require-all')(__dirname + '/models');
+require('./controllers/SiteController')
+require('./models/PackageItem')
 
 var custom = require('./config');
 

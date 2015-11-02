@@ -1,0 +1,79 @@
+<%
+"use strict";
+
+/** @this {Jii.view.WebView} */
+(function() {
+%>
+<div data-spy="affix__disable" data-offset-top="50">
+    <ul class="nav doc-nav">
+        <li>
+            <span>Introduction</span>
+            <ul class="nav">
+                <li><a href="/guide/intro-jii">About Jii</a></li>
+                <li><a href="/guide/intro-ideology">Ideology</a></li>
+            </ul>
+        </li>
+        <li>
+            <span>Get started</span>
+            <ul class="nav">
+                <li><a href="/guide/start-installation">Install</a></li>
+                <li><a href="/guide/start-browser">Jii in browser</a></li>
+            </ul>
+        </li>
+        <li>
+            <span>Application structure</span>
+            <ul class="nav">
+                <li><a href="/guide/structure">Overview</a></li>
+                <li><a href="/guide/structure-applications">Applications</a></li>
+                <li><a href="/guide/structure-application-components">Application components</a></li>
+                <li><a href="/guide/structure-context-components">Context components</a></li>
+                <li><a href="/guide/structure-controllers">Controllers</a></li>
+                <li><a href="/guide/structure-modules">Modules</a></li>
+                <li class="todo"><a href="/guide/structure-models">Models</a></li>
+                <li class="todo"><a href="/guide/structure-views">Views</a></li>
+            </ul>
+        </li>
+        <li>
+            <span>Concepts</span>
+            <ul class="nav">
+                <li><a href="/guide/concept-components">Components</a></li>
+                <li><a href="/guide/concept-properties">Properties</a></li>
+                <li><a href="/guide/concept-events">Events</a></li>
+                <li><a href="/guide/concept-behaviors">Behaviors</a></li>
+                <li><a href="/guide/concept-configurations">Configurations</a></li>
+                <li><a href="/guide/concept-aliases">Aliases</a></li>
+            </ul>
+        </li>
+        <li>
+            <span>Working with Database</span>
+            <ul class="nav">
+                <li><a href="/guide/db-dao">Data Access Objects</a></li>
+                <li><a href="/guide/db-query-builder">Query Builder</a></li>
+                <li><a href="/guide/db-active-record">Active Record</a></li>
+            </ul>
+        </li>
+        <li>
+            <span>Comet</span>
+            <ul class="nav">
+                <li><a href="/guide/comet">Overview</a></li>
+                <li><a href="/guide/comet-server">Comet server</a></li>
+                <li><a href="/guide/comet-client">Comet client (browser)</a></li>
+                <li><a href="/guide/comet-internal">How it works</a></li>
+                <li class="todo"><a href="/guide/comet-bindings">Client-server bindings</a></li>
+            </ul>
+        </li>
+        <li>
+            <span>Handling Requests</span>
+            <ul class="nav">
+                <li><a href="/guide/runtime-route-client">Client routing (push state)</a></li>
+                <li class="todo"><a href="/guide/runtime-url-handling">Url creation and parsing</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+
+<% this.registerJs(function() {
+    jQuery('.doc-nav a[href="' + location.pathname + '"]').parent('li').addClass('active');
+}) %>
+
+<% }).call(this) %>

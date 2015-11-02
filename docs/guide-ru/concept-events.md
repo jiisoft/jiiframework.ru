@@ -42,13 +42,13 @@ foo = new Foo();
 foo.on(Foo.EVENT_HELLO, 'function_name');
 
 // обработчик - метод объекта
-foo.on(Foo.EVENT_HELLO, [object, 'methodName');
+foo.on(Foo.EVENT_HELLO, [object, 'methodName']);
 
 // обработчик - статический метод класса
-foo.on(Foo.EVENT_HELLO, ['app.components.Bar', 'methodName');
+foo.on(Foo.EVENT_HELLO, ['app.components.Bar', 'methodName']);
 
 // обработчик - анонимная функция
-foo.on(Foo.EVENT_HELLO, function ($event) {
+foo.on(Foo.EVENT_HELLO, function (event) {
     // логика обработки события
 });
 ```
@@ -237,7 +237,7 @@ Jii.base.Event.on(Jii.sql.ActiveRecord.className(), Jii.sql.ActiveRecord.EVENT_A
 ```js
 use Jii.base.Event;
 
-Jii.base.Event.on(app.models.Foo.className(), app.models.Foo.EVENT_HELLO, function ($event) {
+Jii.base.Event.on(app.models.Foo.className(), app.models.Foo.EVENT_HELLO, function (event) {
     console.log(event.sender); // app.models.Foo
 });
 
@@ -257,7 +257,7 @@ Jii.base.Event.trigger(app.models.Foo.className(), app.models.Foo.EVENT_HELLO);
 // отсоединение handler
 Jii.base.Event.off(app.models.Foo.className(), app.models.Foo.EVENT_HELLO, handler);
 
-// отсоединяются все обработчики Foo.EVENT_HELLO
+// отсоединяются все обработчики app.models.Foo.EVENT_HELLO
 Jii.base.Event.off(app.models.Foo.className(), app.models.Foo.EVENT_HELLO);
 ```
 

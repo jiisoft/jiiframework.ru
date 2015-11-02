@@ -31,6 +31,11 @@ Jii.defineClass('app.controllers.SiteController', /** @lends app.controllers.Sit
 
 	__extends: Jii.base.Controller,
 
+    beforeAction: function (action, context) {
+        Jii.app.language = context.request.getHostInfo().match(/\.com/) ? 'en' : 'ru';
+        return this.__super(action, context);
+    },
+
 	/**
 	 *
 	 * @param {Jii.base.Context} context
@@ -53,7 +58,7 @@ Jii.defineClass('app.controllers.SiteController', /** @lends app.controllers.Sit
 	 * @param {Jii.httpServer.Response} context.response
 	 */
 	actionGuide: function(context) {
-		var mdContent = fs.readFileSync(Jii.getAlias('@app/docs/guide-ru/' + context.request.get('page', 'intro-jii') + '.md')).toString();
+		var mdContent = fs.readFileSync(Jii.getAlias('@app/docs/guide-' + Jii.app.language + '/' + context.request.get('page', 'intro-jii') + '.md')).toString();
 
 		context.response.data = this.render('guide', {
 			content: markdown.render(mdContent)
@@ -68,7 +73,7 @@ Jii.defineClass('app.controllers.SiteController', /** @lends app.controllers.Sit
 	 * @param {Jii.httpServer.Response} context.response
 	 */
 	actionDevelopment: function(context) {
-		var mdContent = fs.readFileSync(Jii.getAlias('@app/docs/development-ru/' + context.request.get('page', 'contribute') + '.md')).toString();
+		var mdContent = fs.readFileSync(Jii.getAlias('@app/docs/development-' + Jii.app.language + '/' + context.request.get('page', 'contribute') + '.md')).toString();
 
 		context.response.data = this.render('guide', {
 			content: markdown.render(mdContent)
