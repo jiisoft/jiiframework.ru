@@ -1,4 +1,4 @@
-Клиент-сервер биндинги
+Client-server bindings
 =======
 
-// TODO
+// TODO translate

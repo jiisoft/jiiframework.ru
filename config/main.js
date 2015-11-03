@@ -11,6 +11,8 @@ module.exports = {
                     '': 'site/index',
                     'guide': 'site/guide',
                     'guide/<page>': 'site/guide',
+                    'development': 'site/development',
+                    'development/<page>': 'site/development',
                     'contact': 'site/contact'
                 }
             },

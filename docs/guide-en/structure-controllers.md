@@ -177,10 +177,10 @@ To use a standalone action, you should declare it in the *action map* by overrid
 ```js
 actions: function() {
     return {
-        // объявляет "error" действие с помощью названия класса
+        // declares "error" action using a class name
         error: 'app.actions.ErrorAction',
 
-        // объявляет "view" действие с помощью конфигурационного объекта
+        // declares "view" action using a configuration array
         view: {
             className: 'app.actions.ViewAction',
             viewPrefix: ''

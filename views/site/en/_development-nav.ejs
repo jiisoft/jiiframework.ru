@@ -1,0 +1,24 @@
+<%
+"use strict";
+
+/** @this {Jii.view.WebView} */
+(function() {
+%>
+<div data-spy="affix__disable" data-offset-top="50">
+    <ul class="nav doc-nav">
+        <li>
+            <span>Contribute in Jii</span>
+            <ul class="nav todo">
+                <li><a href="/development/contribute">Overview</a></li>
+                <li><a href="/development/add-errors">Notice about error</a></li>
+                <li><a href="/development/git-workflow">How to add changes</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+
+<% this.registerJs(function() {
+    jQuery('.doc-nav a[href="' + location.pathname + '"]').parent('li').addClass('active');
+}) %>
+
+<% }).call(this) %>

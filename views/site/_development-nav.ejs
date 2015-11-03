@@ -1,0 +1,25 @@
+<%
+"use strict";
+
+/** @this {Jii.view.WebView} */
+(function() {
+%>
+<div data-spy="affix__disable" data-offset-top="50">
+    <ul class="nav doc-nav">
+        <li>
+            <span>Вклад в Jii</span>
+            <ul class="nav">
+                <li><a href="/development/contribute">Обзор</a></li>
+                <li><a href="/development/translation">Переводы</a></li>
+                <li><a href="/development/add-errors">Сообщить о проблеме</a></li>
+                <li><a href="/development/git-workflow">Как вносить изменения</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+
+<% this.registerJs(function() {
+    jQuery('.doc-nav a[href="' + location.pathname + '"]').parent('li').addClass('active');
+}) %>
+
+<% }).call(this) %>

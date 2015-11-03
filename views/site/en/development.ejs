@@ -1,0 +1,21 @@
+<%
+"use strict";
+
+/** @typedef {String} content */
+/** @this {Jii.view.WebView} */
+(function() {
+this.title = 'Development';
+%>
+
+<div class="container container-fluid">
+    <div class="docs-nav-container col-sm-4 col-md-3">
+        <%= this.renderFile('@app/views/site/_development-nav.ejs') %>
+    </div>
+    <div class="docs-content col-sm-8 col-md-9">
+        <article class="markdown-body">
+            <%= content %>
+        </article>
+    </div>
+</div>
+
+<% }).call(this) %>

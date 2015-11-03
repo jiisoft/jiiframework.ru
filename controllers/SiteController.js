@@ -75,7 +75,7 @@ Jii.defineClass('app.controllers.SiteController', /** @lends app.controllers.Sit
 	actionDevelopment: function(context) {
 		var mdContent = fs.readFileSync(Jii.getAlias('@app/docs/development-' + Jii.app.language + '/' + context.request.get('page', 'contribute') + '.md')).toString();
 
-		context.response.data = this.render('guide', {
+		context.response.data = this.render('development', {
 			content: markdown.render(mdContent)
 		});
 		context.response.send();

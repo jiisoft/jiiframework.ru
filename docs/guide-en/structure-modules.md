@@ -10,7 +10,7 @@ modules cannot be deployed alone and must reside within applications.
 
 ## Creating Modules <span id="creating-modules"></span>
 
-A module is organized as a directory which is called the [[Jii.base.Module.basePath|базовым путем]] of the module.
+A module is organized as a directory which is called the [[Jii.base.Module.basePath|base path]] of the module.
 Within the directory, there are sub-directories, such as `controllers`, `models`, `views`, which hold controllers,
 models, views, and other code, just like in an application. The following example shows the content within a module:
 
@@ -109,7 +109,7 @@ the [[Jii.base.Application.modules|modules]] property of the application. The fo
     modules: {
         forum: {
             className: 'app\modules\forum\Module',
-            // ... другие настройки модуля ...
+            // ... other configurations for the module ...
         },
     },
 }
@@ -165,7 +165,7 @@ Jii.defineClass('app.modules.forum.Module', /** @lends app.modules.forum.Module.
     init: function(context) {
         this.setModules({
             admin: {
-                // здесь имеет смысл использовать более лаконичное пространство имен
+                // you should consider using a shorter namespace here!
                 className: 'app.modules.forum.modules.admin.Module'
             }
         });

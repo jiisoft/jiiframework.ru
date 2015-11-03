@@ -73,7 +73,7 @@ Below is an example showing a configuration with initial property values, event 
     },
     'as indexer': {
         className: 'app.components.IndexerBehavior'
-        // ... начальные значения свойств ...
+        // ... property init values ...
     }
 }
 ```
