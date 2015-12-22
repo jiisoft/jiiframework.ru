@@ -35,7 +35,7 @@ var Jii = require('jii');
  */
 Jii.defineClass('app.components.MyClass', /** @lends app.components.MyClass.prototype */{
 
-	__extends: Jii.base.Object,
+	__extends: 'Jii.base.Object',
 	
 	prop1: null,
 	prop2: null,

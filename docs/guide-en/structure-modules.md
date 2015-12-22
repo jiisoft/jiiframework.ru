@@ -44,7 +44,7 @@ The following is an example how a module class may look like:
  */
 Jii.defineClass('app.modules.forum.Module', /** @lends app.modules.forum.Module.prototype */{
 
-    __extends: Jii.base.Module,
+    __extends: 'Jii.base.Module',
 
     init: function(context) {
         this.params.foo = 'bar';
@@ -73,7 +73,7 @@ var Jii = require('jii');
  */
 Jii.defineClass('app.modules.forum.controllers.PostController', /** @lends app.modules.forum.controllers.PostController.prototype */{
 
-	__extends: Jii.base.Controller,
+	__extends: 'Jii.base.Controller',
 
 
 });
@@ -160,7 +160,7 @@ in the [[Jii.base.Module.modules|modules]] property of their parent modules. For
  */
 Jii.defineClass('app.modules.forum.Module', /** @lends app.modules.forum.Module.prototype */{
 
-    __extends: Jii.base.Module,
+    __extends: 'Jii.base.Module',
 
     init: function(context) {
         this.setModules({

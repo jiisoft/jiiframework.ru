@@ -22,7 +22,7 @@ The following example shows a `post` controller with two actions: `view` and `cr
  */
 Jii.defineClass('app.controllers.PostController', /** @lends app.controllers.PostController.prototype */{
 
-    __extends: Jii.base.Controller,
+    __extends: 'Jii.base.Controller',
 
     actionView: function(context) {
         var id = context.request.get('id');
@@ -112,7 +112,7 @@ the response data to be sent to end users. The following code defines two action
  */
 Jii.defineClass('app.controllers.SiteController', /** @lends app.controllers.SiteController.prototype */{
 
-    __extends: Jii.base.Controller,
+    __extends: 'Jii.base.Controller',
 
     actionIndex: function(context) {
         context.response.data = this.render('index');
@@ -203,7 +203,7 @@ a public method named `run()`. The role of the `run()` method is similar to that
  */
 Jii.defineClass('app.components.HelloWorldAction', /** @lends app.components.HelloWorldAction.prototype */{
 
-    __extends: Jii.base.Action,
+    __extends: 'Jii.base.Action',
 
     run: function(context) {
         context.response.data = 'Hello World';

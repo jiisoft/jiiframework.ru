@@ -43,7 +43,7 @@ modules/
  */
 Jii.defineClass('app.modules.forum.Module', /** @lends app.modules.forum.Module.prototype */{
 
-    __extends: Jii.base.Module,
+    __extends: 'Jii.base.Module',
 
     init: function(context) {
         this.params.foo = 'bar';
@@ -70,7 +70,7 @@ var Jii = require('jii');
  */
 Jii.defineClass('app.modules.forum.controllers.PostController', /** @lends app.modules.forum.controllers.PostController.prototype */{
 
-	__extends: Jii.base.Controller,
+	__extends: 'Jii.base.Controller',
 
 
 });
@@ -151,7 +151,7 @@ var maxPostCount = module.params.maxPostCount;
  */
 Jii.defineClass('app.modules.forum.Module', /** @lends app.modules.forum.Module.prototype */{
 
-    __extends: Jii.base.Module,
+    __extends: 'Jii.base.Module',
 
     init: function(context) {
         this.setModules({

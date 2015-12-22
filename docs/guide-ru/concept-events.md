@@ -109,7 +109,7 @@ var Jii = require('jii');
  */
 Jii.defineClass('app.components.Foo', /** @lends app.components.Foo.prototype */{
 
-	__extends: Jii.base.Component,
+	__extends: 'Jii.base.Component',
 	
 	__static: {
 	    EVENT_HELLO: 'hello'
@@ -144,7 +144,7 @@ var Jii = require('jii');
  */
 Jii.defineClass('app.components.MessageEvent', /** @lends app.components.MessageEvent.prototype */{
 
-	__extends: Jii.base.Component,
+	__extends: 'Jii.base.Component',
 	
 	message: null
 
@@ -156,7 +156,7 @@ Jii.defineClass('app.components.MessageEvent', /** @lends app.components.Message
  */
 Jii.defineClass('app.components.Mailer', /** @lends app.components.Mailer.prototype */{
 
-	__extends: Jii.base.Component,
+	__extends: 'Jii.base.Component',
 	
 	__static: {
 	    EVENT_MESSAGE_SENT: 'messageSent'

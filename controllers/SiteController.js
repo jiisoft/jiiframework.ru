@@ -29,7 +29,7 @@ var markdown = require('markdown-it')({
  */
 Jii.defineClass('app.controllers.SiteController', /** @lends app.controllers.SiteController.prototype */{
 
-	__extends: Jii.base.Controller,
+	__extends: 'Jii.base.Controller',
 
     beforeAction: function (action, context) {
         Jii.app.language = context.request.getHostInfo().match(/\.com/) ? 'en' : 'ru';

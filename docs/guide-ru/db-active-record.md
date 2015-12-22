@@ -44,7 +44,7 @@ var Jii = require('jii');
  */
 Jii.defineClass('app.models.Customer', /** @lends app.models.Customer.prototype */{
 
-	__extends: Jii.sql.ActiveRecord,
+	__extends: 'Jii.sql.ActiveRecord',
 
 	__static: /** @lends app.models.Customer */{
 
@@ -95,7 +95,7 @@ application: {
  */
 Jii.defineClass('app.models.Customer', /** @lends app.models.Customer.prototype */{
 
-	__extends: Jii.sql.ActiveRecord,
+	__extends: 'Jii.sql.ActiveRecord',
 
 	__static: /** @lends app.models.Customer */{
 	

@@ -41,7 +41,7 @@ In Yii framework components are accessable using `Yii::$app` object. But in Jii 
  * @extends Jii.base.Controller
  */
 Jii.defineClass('app.controllers.SiteController', /** @lends app.controllers.SiteController.prototype */ {
-    __extends: Jii.base.Controller,
+    __extends: 'Jii.base.Controller',
 
     /**
      *

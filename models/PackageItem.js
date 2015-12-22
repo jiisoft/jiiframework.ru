@@ -13,7 +13,7 @@ var hljs = require('highlight.js');
  */
 Jii.defineClass('app.models.PackageItem', /** @lends app.models.PackageItem.prototype */{
 
-	__extends: Jii.base.Model,
+	__extends: 'Jii.base.Model',
 
 	__static: /** @lends app.models.PackageItem */{
 

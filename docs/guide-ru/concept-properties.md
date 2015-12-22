@@ -21,7 +21,7 @@ Jii не поддерживает геттеры и сеттеры через п
  */
 Jii.defineClass('MyClass', /** @lends MyClass.prototype */{
 
-	__extends: Jii.base.Object,
+	__extends: 'Jii.base.Object',
 	
 	_foo: null,
 	

@@ -24,7 +24,7 @@
  */
 Jii.defineClass('app.components.MyBehavior', /** @lends app.components.MyBehavior.prototype */{
 
-	__extends: Jii.base.Behavior,
+	__extends: 'Jii.base.Behavior',
 	
 	prop1: null,
 	_prop2: null,
@@ -69,7 +69,7 @@ Jii.defineClass('app.components.MyBehavior', /** @lends app.components.MyBehavio
  */
 Jii.defineClass('app.components.MyBehavior', /** @lends app.components.MyBehavior.prototype */{
 
-	__extends: Jii.base.Behavior,
+	__extends: 'Jii.base.Behavior',
 	
 	events: function() {
 	    return {
@@ -119,7 +119,7 @@ function (event) {
  */
 Jii.defineClass('app.models.User', /** @lends app.models.User.prototype */{
 
-	__extends: Jii.sql.ActiveRecord,
+	__extends: 'Jii.sql.ActiveRecord',
 	
 	behaviors: function() {
 	    return {

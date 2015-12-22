@@ -22,15 +22,6 @@ module.exports = {
             },
             view: {
                 className: 'Jii.view.ServerWebView'
-            },
-            assetManager: {
-                className: 'Jii.assets.AssetManager',
-                bundles: {
-                    'app.assets.AppAsset': {},
-                    'app.assets.BootstrapAsset': {},
-                    'app.assets.JqueryAsset': {}
-                },
-                baseUrl: '/assets'
             }
         }
     }
