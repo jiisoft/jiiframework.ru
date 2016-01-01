@@ -10,6 +10,5 @@ require('jii-workers')
     .setEnvironment(custom.environment)
     .application(Jii.mergeConfigs(
         require('./config/main'),
-        custom.main
-    ));
-
+        custom
+    ))

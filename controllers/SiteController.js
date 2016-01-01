@@ -45,10 +45,9 @@ Jii.defineClass('app.controllers.SiteController', /** @lends app.controllers.Sit
 	actionIndex: function(context) {
 		var packageItems = app.models.PackageItem.requirePackage('jii-boilerplate-hello');
 
-		context.response.data = this.render('index', {
+		return this.render('index', context, {
 			packageItems: packageItems
 		});
-		context.response.send();
 	},
 
 	/**
@@ -60,10 +59,9 @@ Jii.defineClass('app.controllers.SiteController', /** @lends app.controllers.Sit
 	actionGuide: function(context) {
 		var mdContent = fs.readFileSync(Jii.getAlias('@app/docs/guide-' + Jii.app.language + '/' + context.request.get('page', 'intro-jii') + '.md')).toString();
 
-		context.response.data = this.render('guide', {
+		return this.render('guide', context, {
 			content: markdown.render(mdContent)
 		});
-		context.response.send();
 	},
 
 	/**
@@ -75,10 +73,9 @@ Jii.defineClass('app.controllers.SiteController', /** @lends app.controllers.Sit
 	actionDevelopment: function(context) {
 		var mdContent = fs.readFileSync(Jii.getAlias('@app/docs/development-' + Jii.app.language + '/' + context.request.get('page', 'contribute') + '.md')).toString();
 
-		context.response.data = this.render('development', {
+		return this.render('development', context, {
 			content: markdown.render(mdContent)
 		});
-		context.response.send();
 	},
 
 	/**
@@ -88,8 +85,7 @@ Jii.defineClass('app.controllers.SiteController', /** @lends app.controllers.Sit
 	 * @param {Jii.httpServer.Response} context.response
 	 */
 	actionContact: function(context) {
-		context.response.data = this.render('contact');
-		context.response.send();
+		return this.render('contact', context);
 	}
 
 });
