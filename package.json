@@ -12,6 +12,7 @@
     "jii-urlmanager": "*",
     "jii-view": "*",
     "jii-workers": "*",
+    "jii-console": "*",
     "jquery": "^2.1.4",
     "markdown-it": "^3.1.0"
   },
