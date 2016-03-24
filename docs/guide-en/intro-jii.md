@@ -1,6 +1,6 @@
 What is Jii?
 ============
-Jii is component based Javascript MVC framework. It extends PHP framework Yii architecture, in most cases adheres it's API. The origin of the name Jii is Yii for Javascript.
+Jii is component based Javascript MVC framework. It extends PHP framework Yii's architecture, in most cases adheres it's API. The origin of the name Jii is Yii for Javascript.
 
 History
 -------
@@ -14,8 +14,8 @@ It's not recommended to use Jii for blogs, static web pages with simple GET / PO
 
 Jii in comparision
 ------------------
-If you already are familar with other web frameworks, you probably would be interested to compare them with Jii.
+If you already are familiar with other web frameworks then you probably would be interested in comparing them with Jii.
 - Jii is not just a wrapper for express, it's a complex MVC framework, which supports multiple servers: HTTP / Socket.
 - Jii adheres clean and neatly code philosophy.
 - Jii is full-stack framework and includes very known technologies like Active Record pattern for relational and NoSQL databases and others.
-- Jii is well scalable. It's possible to customize or replace almost any part of base code. Extensions usage make it very easy to share and reuse codes.
+- Jii is well scalable. It's possible to customize or replace almost any part of base code. The usage of extensions makes it very easy to share and reuse codes.
