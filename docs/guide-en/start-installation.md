@@ -10,7 +10,7 @@
 
 ## Installation from boilerplate
 Jii has a few examples, which are also boilerplates for application quick deployment.
-Boilerplates will help you grasp the idea and functionality of Jii and present how to create new application.  
+Boilerplates will help you to grasp the idea and functionality of Jii and to present how to create a new application.  
 
 Currently the following boilerplates are available:
 - [Hello](https://github.com/jiisoft/jii-boilerplate-hello) - Include HTTP server, router, single controller, layout and single view, presenting "Hello World"

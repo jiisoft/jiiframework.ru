@@ -1,9 +1,9 @@
 Jii in browser
 ====
-Initially Jii developed to use it everywhere, where Javascript code works. If module's code is not strictly designed for server, it can be used in browser as well.
+Initially Jii has been developed to use it everywhere, where Javascript code works. If module's code is not designed strictly for server, it can be used in browser as well.
 
 Realize that all of the framework's structures like applications, components, controllers, modules, models and views are available in frontend.
-All of these structures separated and provided as npm module
+All of these structures are divided and provided as npm module.
 
 - `jii` (or `jii/deps`) - Framework's base classes and structures;
 - `jii-clientrouter` - Router, running actions on url changes; Working with `jii-urlmanager`;
@@ -12,7 +12,7 @@ All of these structures separated and provided as npm module
 - `jii-urlmanager` - Url parser, get route based on specified rules;
 - `jii-view` - View render component.
 
-## Create frontend aplication
+## Create frontend application
 
 Application will be created almost as the same way as it creating on the server.
 
