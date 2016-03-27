@@ -32,10 +32,10 @@ guide-en/db-active-record.md                 | Частично
 guide-en/db-dao.md                           | 
 guide-en/db-query-builder.md                 | 
 guide-en/intro-ideology.md                   | 
-guide-en/intro-jii.md                        | 
+guide-en/intro-jii.md                        | Готово ([Stepan](https://github.com/styopdev))
 guide-en/runtime-route-client.md             | 
-guide-en/start-browser.md                    | 
-guide-en/start-installation.md               | 
+guide-en/start-browser.md                    | Готово ([Stepan](https://github.com/styopdev))
+guide-en/start-installation.md               | Готово ([Stepan](https://github.com/styopdev))
 guide-en/structure.md                        | Частично
 guide-en/structure-application-components.md | Готово
 guide-en/structure-applications.md           | Частично
