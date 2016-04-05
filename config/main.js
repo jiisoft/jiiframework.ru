@@ -6,7 +6,6 @@ module.exports = {
         sourceLanguage: 'ru',
         components: {
             urlManager: {
-                className: 'Jii.urlManager.UrlManager',
                 rules: {
                     '': 'site/index',
                     'guide': 'site/guide',
@@ -17,12 +16,9 @@ module.exports = {
                 }
             },
             http: {
-                className: 'Jii.httpServer.HttpServer',
                 staticDirs: __dirname + '/../web/'
             },
-            view: {
-                className: 'Jii.view.ServerWebView'
-            }
+            view: {}
         }
     }
 };
