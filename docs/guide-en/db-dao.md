@@ -1,13 +1,13 @@
 Data Access Objects
 =======================
-These objects implement interface, which allows to send queries and receive responses in specific format. They used by [query builders](db-query-builder) and [Active Record](db-active-record).
-DAO objects use drivers to access DBMS data, drivers are different for each database. All of them implement common API which allows to switch DBMS.
+These objects implement interface which allows to send queries and receive responses in specific format. They used by [query builders](db-query-builder) and [Active Record](db-active-record).
+DAO objects are used drivers to access DBMS data, drivers are different for each database. All of them implement common API which allows to switch DBMS.
 
 Currently [MySQL](http://www.mysql.com/) data access object is implemented, it use npm package driver npm [mysql](https://www.npmjs.com/package/mysql). Other DBMS support is planned and will be provided in future.
 
 ## Creating DB connection <span id="creating-db-connections"></span>
 
-To access database firstyou need to create connection instance [[Jii.sql.Connection]], open connection for load db schema and establish persistent connection.
+To access database first you need to create connection instance [[Jii.sql.Connection]], open connection for load db schema and establish persistent connection.
 
 ```js
 var db = new Jii.sql.mysql.Connection({
@@ -21,7 +21,7 @@ db.open().then(function() {
     // ...
 });
 ```
-If you are going to create Jii application, most convenient way will be add connection to application settings like [application component](structure-application-components) available through `Jii.app.db`.
+If you are going to create Jii application, then the most convenient way will be to add connection application settings like [application component](structure-application-components) available through `Jii.app.db`.
 
 ```js
 return {
@@ -43,12 +43,12 @@ return {
 
 ##SQL query execution <span id="executing-sql-queries"></span>
 
-After database connection instance created, you can execute SQL query, following steps below:
+You can execute SQL query when the database connection instance is already created
 1. Create [[Jii.sql.Command]] instance with plain SQL.
 2. Add optional parameters in query.
 3. Call [[Jii.sql.Command]] any method.
 
-Consider database querying few examples:
+Consider few examples of database querying:
 
 ```js
 var db = new Jii.sql.mysql.Connection(...);
@@ -87,7 +87,7 @@ db.open().then(function() {
 
 ### Adding parameters <span id="binding-parameters"></span>
 
-On creating query with parameters, you have to add parameters using `bindValue` or `bindValues` methods' calls, to prevent SQL-injections. For Example:
+For creating query with parameters you have to add parameters using `bindValue` or `bindValues` methods' calls. This will prevent SQL-injections. For Example:
 
 ```js
 db.createCommand('SELECT * FROM post WHERE id=:id AND status=:status')
@@ -107,7 +107,7 @@ db.createCommand('UPDATE post SET status=1 WHERE id=1')
    .execute();
 ```
 
-[[Jii.sql.Command.execute()]] Method return an object with queries response data. Each of access objects can add own specific parameters, but all of them contains:
+[[Jii.sql.Command.execute()]] Method returns an object with query's response data. Each of access objects can add it's own specific parameters, and all of them contain:
 * `affectedRows` - Changed rows count.
 * `insertId` - Generated, unique identifier. Return for insert queries for rows which contain Primary Key with AUTO_INCREMENT.
 
@@ -177,5 +177,5 @@ Also you can get information about table using [[Jii.sql.Connection.getTableSche
 table = db.getTableSchema('post');
 ```
 
-Method return [[Jii.sql.TableSchema]] object, which contains information about table's columns` primary keys, foreign keys, etc.
-All these data used especially in [query builder](db-query-builder) and [Active Record](db-active-record), to make db queries easier.
+Method returns [[Jii.sql.TableSchema]] object which contains information about table's columns, such as primary keys, foreign keys, etc.
+All these data is used mainly in [query builder](db-query-builder) and [Active Record](db-active-record), to make db queries easier.
