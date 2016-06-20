@@ -42,7 +42,7 @@ Jii.createWebApplication({
     }
 }).start();
 
-console.log('Index page url: ' + Jii.app.urlManager.createUrl('site/index'));
+console.log('Index page url: ' + Jii.app.urlManager.createUrl(['site/index']));
 ```
 
 ## Dependencies
