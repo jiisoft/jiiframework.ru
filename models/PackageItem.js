@@ -4,6 +4,9 @@
  */
 
 var Jii = require('jii');
+var _each = require('lodash/each');
+var _indexOf = require('lodash/indexOf');
+var Model = require('jii-model/base/Model');
 var fs = require('fs');
 var hljs = require('highlight.js');
 
@@ -11,9 +14,9 @@ var hljs = require('highlight.js');
  * @class app.models.PackageItem
  * @extends Jii.base.Model
  */
-Jii.defineClass('app.models.PackageItem', /** @lends app.models.PackageItem.prototype */{
+module.exports = Jii.defineClass('app.models.PackageItem', /** @lends app.models.PackageItem.prototype */{
 
-	__extends: 'Jii.base.Model',
+	__extends: Model,
 
 	__static: /** @lends app.models.PackageItem */{
 
@@ -30,13 +33,13 @@ Jii.defineClass('app.models.PackageItem', /** @lends app.models.PackageItem.prot
 			var files = [];
 			var directories = [];
 
-			Jii._.each(fs.readdirSync(rootPath + path), function(name) {
+			_each(fs.readdirSync(rootPath + path), function(name) {
 				// Skip hidden
 				if (name.substr(0, 1) === '.') {
 					return;
 				}
 
-				if (Jii._.indexOf(this.__static.SKIP_NAMES, name) !== -1) {
+				if (_indexOf(this.__static.SKIP_NAMES, name) !== -1) {
 					return;
 				}
 
@@ -51,7 +54,7 @@ Jii.defineClass('app.models.PackageItem', /** @lends app.models.PackageItem.prot
 			var items = [];
 
 			// Each sorted items
-			Jii._.each(directories.concat(files), function(name, i) {
+			_each(directories.concat(files), function(name, i) {
 				var model = new this.__static();
 				model.setAttributes({
 					name: name,

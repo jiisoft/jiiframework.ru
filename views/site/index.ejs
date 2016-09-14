@@ -84,7 +84,7 @@
     <div class="example-nav-container col-md-3" role="tabpanel">
 
         <ul class="nav nav-pills nav-stacked nav-tabs" role="tablist">
-            <% Jii._.each(packageItems, function(packageItem) { %>
+            <% _each(packageItems, function(packageItem) { %>
             <li role="presentation" class="<%- packageItem.get('isEntryScript') ? 'active' : '' %> <%- packageItem.get('isDir') ? 'directory' : '' %>" style="padding-left:  <%- packageItem.get('level') * 18 %>px;">
                 <% if (packageItem.get('isDir')) { %>
                 <span>
@@ -114,7 +114,7 @@
 
         <!-- Tab panes -->
         <div class="tab-content">
-            <% Jii._.each(packageItems, function(packageItem) { %>
+            <% _each(packageItems, function(packageItem) { %>
             <% if (!packageItem.get('isDir')) { %>
             <div role="tabpanel" class="tab-pane <%- packageItem.get('isEntryScript') ? 'active' : '' %>" id="<%- packageItem.get('id') %>">
                 <pre><code><%= packageItem.get('source') %></code></pre>

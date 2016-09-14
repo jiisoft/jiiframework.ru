@@ -1,14 +1,14 @@
 #!/usr/bin/env node
 
-global.Jii = require('jii');
+var Jii = require('jii');
+var mainConfig = require('./config/main');
+var customConfig = require('./config');
 
-global.app = Jii.namespace('app');
-require('./models/PackageItem')
+Jii.namespace('app');
 
-var custom = require('./config');
 require('jii-workers')
-    .setEnvironment(custom.environment)
+    .setEnvironment(customConfig.environment)
     .application(Jii.mergeConfigs(
-        require('./config/main'),
-        custom
-    ))
+        mainConfig,
+        customConfig
+    ));

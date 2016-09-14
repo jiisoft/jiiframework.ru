@@ -7,13 +7,14 @@
     "gulp-easy": "^0.1.7",
     "highlight.js": "^8.4.0",
     "jii": "*",
+    "jii-console": "*",
     "jii-httpserver": "*",
     "jii-model": "*",
     "jii-urlmanager": "*",
     "jii-view": "*",
     "jii-workers": "*",
-    "jii-console": "*",
     "jquery": "^2.1.4",
+    "lodash": "^4.15.0",
     "markdown-it": "^3.1.0"
   },
   "devDependencies": {
