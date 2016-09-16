@@ -1,3 +1,7 @@
+var UrlManager = require('jii-urlmanager/UrlManager');
+var HttpServer = require('jii-httpserver/server/HttpServer');
+var ServerWebView = require('jii-view/server/ServerWebView');
+
 module.exports = {
     workers: 2,
     application: {
@@ -5,6 +9,7 @@ module.exports = {
         sourceLanguage: 'ru',
         components: {
             urlManager: {
+                className: UrlManager,
                 rules: {
                     '': 'site/index',
                     'guide': 'site/guide',
@@ -15,9 +20,12 @@ module.exports = {
                 }
             },
             http: {
+                className: HttpServer,
                 staticDirs: __dirname + '/../web/'
             },
-            view: {}
+            view: {
+                className: ServerWebView
+            }
         }
     }
 };

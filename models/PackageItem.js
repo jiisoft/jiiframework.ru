@@ -7,6 +7,7 @@ var Jii = require('jii');
 var _each = require('lodash/each');
 var _indexOf = require('lodash/indexOf');
 var Model = require('jii-model/base/Model');
+var File = require('jii/helpers/File');
 var fs = require('fs');
 var hljs = require('highlight.js');
 
@@ -95,7 +96,7 @@ module.exports = Jii.defineClass('app.models.PackageItem', /** @lends app.models
 	},
 
 	getExtension: function() {
-		return Jii.helpers.File.getFileExtension(this.get('name'));
+		return File.getFileExtension(this.get('name'));
 	},
 
 	getGlyphIcon: function() {
