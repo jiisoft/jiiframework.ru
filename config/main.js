@@ -1,12 +1,17 @@
 var UrlManager = require('jii-urlmanager/UrlManager');
 var HttpServer = require('jii-httpserver/server/HttpServer');
 var ServerWebView = require('jii-view/server/ServerWebView');
+var SiteController = require('../controllers/SiteController');
+var UnderscoreRenderer = require('jii-view/server/underscore/UnderscoreRenderer');
 
 module.exports = {
     workers: 2,
     application: {
         language: 'en',
         sourceLanguage: 'ru',
+        controllerMap: {
+            SiteController: SiteController
+        },
         components: {
             urlManager: {
                 className: UrlManager,
@@ -24,8 +29,13 @@ module.exports = {
                 staticDirs: __dirname + '/../web/'
             },
             view: {
-                className: ServerWebView
-            }
-        }
-    }
+                className: ServerWebView,
+                renderers: {
+                    underscore: {
+                        className: UnderscoreRenderer
+                    },
+                },
+            },
+        },
+    },
 };

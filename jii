@@ -4,8 +4,6 @@ var Jii = require('jii');
 var mainConfig = require('./config/main');
 var customConfig = require('./config');
 
-Jii.namespace('app');
-
 require('jii-workers')
     .setEnvironment(customConfig.environment)
     .application(Jii.mergeConfigs(
