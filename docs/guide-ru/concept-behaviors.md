@@ -85,7 +85,7 @@ Jii.defineClass('app.components.MyBehavior', /** @lends app.components.MyBehavio
 ```
 
 Метод [[Jii.base.Behavior.events()]] должен возвращать список событий и соответствующих им обработчиков.
-В приведенном выше примере, объявлено событие [[Jii.base.ActiveRecord.EVENT_BEFORE_VALIDATE]]
+В приведенном выше примере, объявлено событие [[Jii.base.BaseActiveRecord.EVENT_BEFORE_VALIDATE]]
 и его обработчик `beforeValidate()`. Указать обработчик события, можно одним из следующих способов:
 
 * строка с именем метода текущего поведения, как в примере выше;

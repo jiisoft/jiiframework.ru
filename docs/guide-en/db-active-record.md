@@ -225,7 +225,7 @@ app.models.Customer
     });
 ```
 
-> Note: Neither [[Jii.sql.ActiveRecord.findOne()]] nor [[Jii.sql.ActiveQuery.one()]] will add `LIMIT 1` to 
+> Note: Neither [[Jii.sql.ActiveRecord.findOne()]] nor [[Jii.base.ActiveQuery.one()]] will add `LIMIT 1` to 
   the generated SQL statement. If your query may return many rows of data, you should call `limit(1)` explicitly
   to improve the performance, e.g., `app.models.Customer.find().limit(1).one()`.
 
@@ -268,7 +268,7 @@ app.models.Customer
 
 While retrieving data in terms of Active Record objects is convenient and flexible, it is not always desirable
 when you have to bring back a large amount of data due to the big memory footprint. In this case, you can retrieve
-data using objects by calling [[Jii.sql.ActiveQuery.asArray()]] before executing a query method:
+data using objects by calling [[Jii.base.ActiveQuery.asArray()]] before executing a query method:
 
 > По факту, в JavaScript вы получите массив, наполненный объектами. Поэтому правильней было бы назвать метод
 [[asObject()]], и такой метод (синоним) есть. Но для сохранения API Yii 2 оставлен метод [[asArray()]].
@@ -511,8 +511,8 @@ a [junction table](https://en.wikipedia.org/wiki/Junction_table) is usually intr
 table and the `item` table may be related via a junction table named `order_item`. One order will then correspond
 to multiple order items, while one product item will also correspond to multiple order items.
 
-When declaring such relations, you would call either [[Jii.sql.ActiveQuery.via()]] or [[Jii.sql.ActiveQuery.viaTable()]]
-to specify the junction table. The difference between [[Jii.sql.ActiveQuery.via()]] and [[Jii.sql.ActiveQuery.viaTable()]]
+When declaring such relations, you would call either [[Jii.base.ActiveQuery.via()]] or [[Jii.base.ActiveQuery.viaTable()]]
+to specify the junction table. The difference between [[Jii.base.ActiveQuery.via()]] and [[Jii.base.ActiveQuery.viaTable()]]
 is that the former specifies the junction table in terms of an existing relation name while the latter directly
 the junction table. For example,
 
@@ -648,7 +648,7 @@ that is declared within a related Active Record class. For example, `app.models.
 relation, and `app.models.Order` is related with `app.models.Item` through the `items` relation. When querying for `app.models.Customer`, you can eagerly
 load `items` using the nested relation notation `orders.items`. 
 
-The following code shows different usage of [[Jii.sql.ActiveQuery.with()]]. We assume the `app.models.Customer` class
+The following code shows different usage of [[Jii.base.ActiveQuery.with()]]. We assume the `app.models.Customer` class
 has two relations `orders` and `country`, while the `app.models.Order` class has one relation `items`.
 
 ```js
@@ -708,7 +708,7 @@ app.models.Customer.find()
 
 When customizing the relational query for a relation, you should specify the relation name as an array key
 and use an anonymous function as the corresponding array value. The anonymous function will receive a `query` parameter
-which represents the [[Jii.sql.ActiveQuery]] object used to perform the relational query for the relation.
+which represents the [[Jii.base.ActiveQuery]] object used to perform the relational query for the relation.
 In the code example above, we are modifying the relational query by appending an additional condition about order status.
 
 
@@ -773,7 +773,7 @@ customer data, but they are different objects. When accessing `order.customer`, 
 is executed to populate a new object `customer2`.
 
 To avoid the redundant execution of the last SQL statement in the above example, we should tell Jii that
-`customer` is an *inverse relation* of `orders` by calling the [[Jii.sql.ActiveQuery.inverseOf()]] method
+`customer` is an *inverse relation* of `orders` by calling the [[Jii.base.ActiveQuery.inverseOf()]] method
 like shown below:
 
 ```js

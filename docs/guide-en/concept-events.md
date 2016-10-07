@@ -212,7 +212,7 @@ Sometimes, you may want to respond to an event triggered by *every* instance of 
 a specific instance. Instead of attaching an event handler to every instance, you may attach the handler
 on the *class level* by calling the static method [[Jii.base.Event.on()]].
 
-For example, an [Active Record](db-active-record) object will trigger an [[Jii.base.ActiveRecord.EVENT_AFTER_INSERT]]
+For example, an [Active Record](db-active-record) object will trigger an [[Jii.base.BaseActiveRecord.EVENT_AFTER_INSERT]]
 event whenever it inserts a new record into the database. In order to track insertions done by *every*
 [Active Record](db-active-record) object, you may use the following code:
 
@@ -223,7 +223,7 @@ Jii.base.Event.on(Jii.sql.ActiveRecord.className(), Jii.sql.ActiveRecord.EVENT_A
 ```
 
 The event handler will be invoked whenever an instance of [[Jii.sql.ActiveRecord]], or one of its child classes, triggers
-the [[Jii.base.ActiveRecord.EVENT_AFTER_INSERT]] event. In the handler, you can get the object
+the [[Jii.base.BaseActiveRecord.EVENT_AFTER_INSERT]] event. In the handler, you can get the object
 that triggered the event through `event.sender`.
 
 When an object triggers an event, it will first call instance-level handlers, followed by the class-level handlers.

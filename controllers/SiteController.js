@@ -30,7 +30,7 @@ var markdown = require('markdown-it')({
  * @class app.controllers.SiteController
  * @extends Jii.base.Controller
  */
-module.exports = Jii.defineClass('app.controllers.SiteController', /** @lends app.controllers.SiteController.prototype */{
+var SiteController = Jii.defineClass('app.controllers.SiteController', /** @lends app.controllers.SiteController.prototype */{
 
 	__extends: Controller,
 
@@ -93,3 +93,5 @@ module.exports = Jii.defineClass('app.controllers.SiteController', /** @lends ap
 	}
 
 });
+
+module.exports = SiteController;

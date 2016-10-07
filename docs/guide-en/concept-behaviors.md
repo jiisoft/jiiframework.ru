@@ -82,7 +82,7 @@ Jii.defineClass('app.components.MyBehavior', /** @lends app.components.MyBehavio
 ```
 
 The [[Jii.base.Behavior.events()]] method should return a list of events and their corresponding handlers.
-The above example declares that the [[Jii.base.ActiveRecord.EVENT_BEFORE_VALIDATE]] event exists and defines
+The above example declares that the [[Jii.base.BaseActiveRecord.EVENT_BEFORE_VALIDATE]] event exists and defines
 its handler, `beforeValidate()`. When specifying an event handler, you may use one of the following formats:
 
 * a string that refers to the name of a method of the behavior class, like the example above

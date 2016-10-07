@@ -213,7 +213,7 @@ foo.off(Foo.EVENT_HELLO);
 В таком случае присоединять обработчик события к каждому экземпляру класса не нужно. Достаточно присоединить обработчик
 *на уровне класса*, вызвав статический метод [[Jii.base.Event.on()]].
 
-Например, объект [Active Record](db-active-record) инициирует событие [[Jii.base.ActiveRecord.EVENT_AFTER_INSERT]]
+Например, объект [Active Record](db-active-record) инициирует событие [[Jii.base.BaseActiveRecord.EVENT_AFTER_INSERT]]
 после добавления в базу данных новой записи. Чтобы отслеживать записи, добавленные в базу данных *каждым* объектом
 Active Record, можно использовать следующий код:
 
@@ -223,7 +223,7 @@ Jii.base.Event.on(Jii.sql.ActiveRecord.className(), Jii.sql.ActiveRecord.EVENT_A
 });
 ```
 
-Обработчик будет вызван при срабатывании события [[Jii.base.ActiveRecord.EVENT_AFTER_INSERT]] в экземплярах класса
+Обработчик будет вызван при срабатывании события [[Jii.base.BaseActiveRecord.EVENT_AFTER_INSERT]] в экземплярах класса
 [[Jii.sql.ActiveRecord]] или его потомков. В обработчике можно получить доступ к объекту, который
 инициировал событие, с помощью свойства `event.sender`.
 

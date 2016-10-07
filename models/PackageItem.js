@@ -15,7 +15,7 @@ var hljs = require('highlight.js');
  * @class app.models.PackageItem
  * @extends Jii.base.Model
  */
-module.exports = Jii.defineClass('app.models.PackageItem', /** @lends app.models.PackageItem.prototype */{
+var PackageItem = Jii.defineClass('app.models.PackageItem', /** @lends app.models.PackageItem.prototype */{
 
 	__extends: Model,
 
@@ -126,3 +126,5 @@ module.exports = Jii.defineClass('app.models.PackageItem', /** @lends app.models
 	}
 
 });
+
+module.exports = PackageItem;
