@@ -24,7 +24,6 @@ There are main Jii packages:
 - [jii-model](https://www.npmjs.com/package/jii-model)
 - [jii-ar-sql](https://www.npmjs.com/package/jii-ar-sql)
 - [jii-httpserver](https://www.npmjs.com/package/jii-httpserver)
-- [jii-urlmanager](https://www.npmjs.com/package/jii-urlmanager)
 - [jii-view](https://www.npmjs.com/package/jii-view)
 
 ## Classes and namespaces

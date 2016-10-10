@@ -9,12 +9,11 @@ Jii-clientrouter устанавливается как [компонент пр�
 
 При загрузке страницы или изменении адресной строки запускается обработчик, который парсит адресную строку компонентом
 [UrlManager](runtime-url-handling), получает route с параметрами запроса и запускает действие (action), эквивалентное
-найденному route. Поэтому для работы Jii-clientrouter необходимо так же подключить `jii-urlmanager`.
+найденному route.
 Пример конфигурации приложения:
 
 ```js
 require('jii/deps');
-require('jii-urlmanager');
 require('jii-clientrouter');
 
 // Application
@@ -26,7 +25,7 @@ Jii.createWebApplication({
         basePath: location.href,
         components: {
             urlManager: {
-                className: 'Jii.urlManager.UrlManager',
+                className: 'Jii.request.UrlManager',
                 rules: {
                     '': 'site/index',
                     'article/<id>': 'site/article',

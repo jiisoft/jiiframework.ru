@@ -93,7 +93,7 @@ var config = {
         basePath: __dirname,
         components': {
             urlManager: {
-                className: 'Jii.urlManager.UrlManager',
+                className: 'Jii.request.UrlManager',
                 rules: {
                     '': 'site/index',
                     'guide': 'site/guide',

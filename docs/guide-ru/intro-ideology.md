@@ -36,7 +36,6 @@ Jii разбит на несколько пакетов, поэтому его �
 - [jii-model](https://www.npmjs.com/package/jii-model)
 - [jii-ar-sql](https://www.npmjs.com/package/jii-ar-sql)
 - [jii-httpserver](https://www.npmjs.com/package/jii-httpserver)
-- [jii-urlmanager](https://www.npmjs.com/package/jii-urlmanager)
 - [jii-view](https://www.npmjs.com/package/jii-view)
 
 ## Классы и неймспейсы

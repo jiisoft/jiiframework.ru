@@ -46,7 +46,7 @@ Jii-comet предоставляет набор компонентов и кла
 var Jii = require('jii');
 require('jii-comet');
 
-require('jii-workers')
+require('jii/workers')
     .application('comet', Jii.mergeConfigs(
         {
             application: {

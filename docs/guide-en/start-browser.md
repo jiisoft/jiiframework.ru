@@ -6,10 +6,9 @@ Realize that all of the framework's structures like applications, components, co
 All of these structures are divided and provided as npm module.
 
 - `jii` (or `jii/deps`) - Framework's base classes and structures;
-- `jii-clientrouter` - Router, running actions on url changes; Working with `jii-urlmanager`;
+- `jii-clientrouter` - Router, running actions on url changes;
 - `jii-comet` - Comet client;
 - `jii-model` - Model with validators (which are mentioned in rules());
-- `jii-urlmanager` - Url parser, get route based on specified rules;
 - `jii-view` - View render component.
 
 ## Create frontend application
@@ -19,7 +18,6 @@ Application will be created almost as the same way as it creating on the server.
 ```js
 // Libs
 require('jii/deps'); // included underscore and underscore.string libraries
-require('jii-urlmanager');
 require('jii-clientrouter');
 
 // Application
@@ -30,7 +28,7 @@ Jii.createWebApplication({
         basePath: location.href,
         components: {
             urlManager: {
-                className: 'Jii.urlManager.UrlManager',
+                className: 'Jii.request.UrlManager',
                 rules: {
                     '': 'site/index'
                 }

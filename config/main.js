@@ -1,4 +1,4 @@
-var UrlManager = require('jii-urlmanager/UrlManager');
+var UrlManager = require('jii/request/UrlManager');
 var HttpServer = require('jii-httpserver/server/HttpServer');
 var ServerWebView = require('jii-view/server/ServerWebView');
 var SiteController = require('../controllers/SiteController');
