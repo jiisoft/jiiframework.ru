@@ -1,8 +1,8 @@
 var UrlManager = require('jii/request/UrlManager');
-var HttpServer = require('jii-httpserver/server/HttpServer');
-var ServerWebView = require('jii-view/server/ServerWebView');
+var HttpServer = require('jii/request/http/HttpServer');
+var ServerWebView = require('jii/view/ServerWebView');
 var SiteController = require('../controllers/SiteController');
-var UnderscoreRenderer = require('jii-view/server/underscore/UnderscoreRenderer');
+var UnderscoreRenderer = require('jii/view/underscore/UnderscoreRenderer');
 
 module.exports = {
     workers: 2,

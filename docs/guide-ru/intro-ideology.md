@@ -27,16 +27,13 @@ Jii проектируется с учётом того, что он долже�
 Jii распространяется как набор пакетов jii-* и не имеет собственных пакет-менеджеров (привет, Meteor). Это значит,
 что вместе с Jii вы можете подключить любые другие npm пакеты.
 
-Jii разбит на несколько пакетов, поэтому его можно использовать по частям. Например, если вы хотите начать
-использовать только ActiveRecord, то вы устанавливаете jii-ar-sql и не имеете контроллеров, вьюшек, http сервера и
-прочего ненужного вам кода.
+Jii разбит на несколько пакетов, поэтому его можно использовать по частям.
 
 Основными пакетамы Jii на данный момент являются:
 - [jii](https://www.npmjs.com/package/jii)
 - [jii-model](https://www.npmjs.com/package/jii-model)
-- [jii-ar-sql](https://www.npmjs.com/package/jii-ar-sql)
-- [jii-httpserver](https://www.npmjs.com/package/jii-httpserver)
-- [jii-view](https://www.npmjs.com/package/jii-view)
+- [jii-mysql](https://www.npmjs.com/package/jii-mysql)
+- [jii-react](https://www.npmjs.com/package/jii-react)
 
 ## Классы и неймспейсы
 Для их реализации используется библиотека [Neatness](http://github.com/affka/neatness), которая
@@ -61,8 +58,8 @@ Jii.defineClass('app.controllers.SiteController', /** @lends app.controllers.Sit
     /**
      *
      * @param {Jii.base.Context} context
-     * @param {Jii.httpServer.Request} context.request
-     * @param {Jii.httpServer.Response} context.response
+     * @param {Jii.request.http.Request} context.request
+     * @param {Jii.request.http.Response} context.response
      */
     actionIndex: function(context) {
         context.response.data = this.render('index');

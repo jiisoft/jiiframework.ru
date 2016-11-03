@@ -6,13 +6,13 @@
 более безопасные запросы в БД.
 
 Использование конструктора запросов делится на 2 этапа:
-1. Создание экземпляра класса [[Jii.base.Query]] для представления различных частей SQL выражения (например, `SELECT`, `FROM`).
-2. Вызов методов (например, `all()`) у эклемпляра [[Jii.base.Query]] для выполнения запроса к базе данных и асинхронного получения данных.
+1. Создание экземпляра класса [[Jii.data.Query]] для представления различных частей SQL выражения (например, `SELECT`, `FROM`).
+2. Вызов методов (например, `all()`) у эклемпляра [[Jii.data.Query]] для выполнения запроса к базе данных и асинхронного получения данных.
 
 Следующий код показывает простейший способ использования конструктора запросов:
 
 ```js
-(new Jii.base.Query())
+(new Jii.data.Query())
     .select(['id', 'email'])
     .from('user')
     .where({last_name: 'Smith'})
@@ -36,16 +36,16 @@ LIMIT 10
 
 ## Создание запросов <span id="building-queries"></span>
 
-Для построения запроса необходимо вызывать различные методы объекта [[Jii.base.Query]], наполняя тем самым различные
+Для построения запроса необходимо вызывать различные методы объекта [[Jii.data.Query]], наполняя тем самым различные
 части SQL команды. Имена методов схожи с названиями SQL операторов. Например, чтобы указать `FROM`, необходимо вызвать
 метод `from()`. Все методы возвращают сам объект запроса, что позволяет объединять несколько вызовов вместе.
 
 Далее мы опишем использование каждого метода конструктора запросов.
 
 
-### [[Jii.base.Query.select()]] <span id="select"></span>
+### [[Jii.data.Query.select()]] <span id="select"></span>
 
-Метод [[Jii.base.Query.select()]] метод определяет часть `SELECT` SQL запроса. Вы можете указать столбцы, которые
+Метод [[Jii.data.Query.select()]] метод определяет часть `SELECT` SQL запроса. Вы можете указать столбцы, которые
 будут выбраны.
 
 ```js
@@ -74,7 +74,7 @@ query.select('user.id AS user_id, email');
 query.select({user_id: 'user.id', email: 'email'});
 ```
 
-По-умолчанию (даже если не вызывать метод [[Jii.base.Query.select()]]), в запросе будет сгенерирована звездочка `*`
+По-умолчанию (даже если не вызывать метод [[Jii.data.Query.select()]]), в запросе будет сгенерирована звездочка `*`
 для выбора всех столбцов.
 
 Кроме имен столбцов, вы можете также указывать SQL выражения. Например,
@@ -83,24 +83,24 @@ query.select({user_id: 'user.id', email: 'email'});
 query.select(["CONCAT(first_name, ' ', last_name) AS full_name", 'email']); 
 ```
 
-Так же поддерживаются под-запросы, для этого необходимо передать объект [[Jii.base.Query]] как один из
+Так же поддерживаются под-запросы, для этого необходимо передать объект [[Jii.data.Query]] как один из
 элементов для выборки.
  
 ```js
-var subQuery = (new Jii.base.Query()).select('COUNT(*)').from('user');
+var subQuery = (new Jii.data.Query()).select('COUNT(*)').from('user');
 
 // SELECT `id`, (SELECT COUNT(*) FROM `user`) AS `count` FROM `post`
-var query = (new Jii.base.Query()).select({id: 'id', count: subQuery}).from('post');
+var query = (new Jii.data.Query()).select({id: 'id', count: subQuery}).from('post');
 ```
 
-Для добавления слова `'DISTINCT'` в SQL запрос, необходимо вызвать метод [[Jii.base.Query.distinct()]]:
+Для добавления слова `'DISTINCT'` в SQL запрос, необходимо вызвать метод [[Jii.data.Query.distinct()]]:
 
 ```js
 // SELECT DISTINCT `user_id` ...
 query.select('user_id').distinct();
 ```
 
-Вы так же можете вызывать метод [[Jii.base.Query.addSelect()]] для добавления дополнительных колонок.
+Вы так же можете вызывать метод [[Jii.data.Query.addSelect()]] для добавления дополнительных колонок.
 
 ```js
 query.select(['id', 'username'])
@@ -108,9 +108,9 @@ query.select(['id', 'username'])
 ```
 
 
-### [[Jii.base.Query.from()]] <span id="from"></span>
+### [[Jii.data.Query.from()]] <span id="from"></span>
 
-Метод [[Jii.base.Query.from()]] наполняет фрагмент `FROM` из SQL запроса. Например,
+Метод [[Jii.data.Query.from()]] наполняет фрагмент `FROM` из SQL запроса. Например,
 
 ```js
 // SELECT * FROM `user`
@@ -133,18 +133,18 @@ query.from('public.user u, public.post p');
 query.from({u: 'public.user', p: 'public.post'});
 ```
 
-Кроме того, имена таблиц могут содержать подзапросы - объекты [[Jii.base.Query]].
+Кроме того, имена таблиц могут содержать подзапросы - объекты [[Jii.data.Query]].
 
 ```js
-var subQuery = (new Jii.base.Query()).select('id').from('user').where('status=1');
+var subQuery = (new Jii.data.Query()).select('id').from('user').where('status=1');
 
 // SELECT * FROM (SELECT `id` FROM `user` WHERE status=1) u 
 query.from({u: subQuery});
 ```
 
-### [[Jii.base.Query.where()]] <span id="where"></span>
+### [[Jii.data.Query.where()]] <span id="where"></span>
 
-Метод [[Jii.base.Query.where()]] наполняет секцию `WHERE` в SQL выражении. Вы можете использовать несколько форматов
+Метод [[Jii.data.Query.where()]] наполняет секцию `WHERE` в SQL выражении. Вы можете использовать несколько форматов
 указания условий SQL выражения:
 
 - строка, `'status=1'`
@@ -163,7 +163,7 @@ query.where('status=1');
 query.where('status=:status', {':status': status});
 ```
 
-Вы можете добавлять параметры к запросу через методы [[Jii.base.Query.params()]] или [[Jii.base.Query.addParams()]].
+Вы можете добавлять параметры к запросу через методы [[Jii.data.Query.params()]] или [[Jii.data.Query.addParams()]].
 
 ```js
 query.where('status=:status')
@@ -191,7 +191,7 @@ query.where({
 Вы также можете использовать подзапросы с хэш-формате:
 
 ```js
-var userQuery = (new Jii.base.Query()).select('id').from('user');
+var userQuery = (new Jii.data.Query()).select('id').from('user');
 
 // ...WHERE `id` IN (SELECT `id` FROM `user`)
 query.where({id: userQuery});
@@ -224,11 +224,11 @@ query.where({id: userQuery});
 - `not between`: подобно `between`, но `BETWEEN` заменяется на `NOT BETWEEN` в сгенерированном выражении.
 
 - `IN`: операнд 1 должен быть столбцом или SQL выражение (expression). Второй операнд может быть либо массивом
-  или объектом `Jii.base.Query`. Например,
+  или объектом `Jii.data.Query`. Например,
   `['in', 'id', [1, 2, 3]]` сгенерирует `id IN (1, 2, 3)`.
   Метод экранирует имя столбца и обрабатывает значения в диапазоне.
   Оператор `IN` также поддерживает составные столбцы. В этом случае операнд 1 должен быть массивом столбцов,
-  в то время как операнд 2 должен быть массивом массивов или `Jii.base.Query` объектом, представляющий диапазон столбцов.
+  в то время как операнд 2 должен быть массивом массивов или `Jii.data.Query` объектом, представляющий диапазон столбцов.
 
 - `NOT IN`: похож на `IN` оператора, за исключением того, что `IN` заменяется на `NOT IN` в созданном выражении.
 
@@ -243,7 +243,7 @@ query.where({id: userQuery});
 
 - `or not like`: похож на `not like`, но для объединения используется оператор `OR`, когда вторым операндом передан массив.
 
-- `exists`: требуется один операнд, который должен быть экземпляром [[Jii.base.Query]]. Сгенерирует выражение
+- `exists`: требуется один операнд, который должен быть экземпляром [[Jii.data.Query]]. Сгенерирует выражение
   `EXISTS (sub-query)`.
 
 - `not exists`: похож на оператор `exists`, генерирует выражение `NOT EXISTS (sub-query)`..
@@ -254,7 +254,7 @@ query.where({id: userQuery});
 
 #### Добавление условий <span id="appending-conditions"></span>
 
-Вы можете использовать методы [[Jii.base.Query.andWhere()]] или [[Jii.base.Query.orWhere()]] для добавления условий в
+Вы можете использовать методы [[Jii.data.Query.andWhere()]] или [[Jii.data.Query.orWhere()]] для добавления условий в
 существующий запрос. Вы можете вызывать эти методы несколько раз, например:
 
 ```js
@@ -279,7 +279,7 @@ if (search) {
 При строительстве `WHERE` условия, основанного на данных пользователя, как правило, необходимо игнорировать пустые
 значения. Например, в поисковой форме, которая позволяет осуществлять поиск по имени и по электронной почте, нужно
 игнорировать поле, если в него пользователь ничего не ввел. Это можно сделать с помощью метода
-[[Jii.base.Query.filterWhere()]]:
+[[Jii.data.Query.filterWhere()]]:
 
 
 ```js
@@ -290,18 +290,18 @@ query.filterWhere({
 });
 ```
 
-Различия между [[Jii.base.Query.filterWhere()]] и [[Jii.base.Query.where()]] состоит в том, первый будет игнорировать
+Различия между [[Jii.data.Query.filterWhere()]] и [[Jii.data.Query.where()]] состоит в том, первый будет игнорировать
 пустые значения.
 
 > Значение считается пустым, если это `null`, `false`, пустой массив, пустая строка или строка, состоящая только из пробелов.
 
-Подобно методам [[Jii.base.Query.andWhere()]] и [[Jii.base.Query.orWhere()]], вы можете использовать
-[[Jii.base.Query.andFilterWhere()]] и [[Jii.base.Query.orFilterWhere()]] для добавленя дополнительных условий.
+Подобно методам [[Jii.data.Query.andWhere()]] и [[Jii.data.Query.orWhere()]], вы можете использовать
+[[Jii.data.Query.andFilterWhere()]] и [[Jii.data.Query.orFilterWhere()]] для добавленя дополнительных условий.
 
 
-### [[Jii.base.Query.orderBy()]] <span id="order-by"></span>
+### [[Jii.data.Query.orderBy()]] <span id="order-by"></span>
 
-Метод [[Jii.base.Query.orderBy()]] добавляет часть `ORDER BY` к SQL запросу. Например,
+Метод [[Jii.data.Query.orderBy()]] добавляет часть `ORDER BY` к SQL запросу. Например,
  
 ```js
 // ... ORDER BY `id` ASC, `name` DESC
@@ -313,7 +313,7 @@ query.orderBy({
 
 В приведенном выше коде, ключами объекта являются имена столбцов, а значения - соответствующее направления сортировки.
 
-Для добавления условий сортировки используйте метод [[Jii.base.Query.addOrderBy()]].
+Для добавления условий сортировки используйте метод [[Jii.data.Query.addOrderBy()]].
 Например,
 
 ```js
@@ -322,9 +322,9 @@ query.orderBy('id ASC')
 ```
 
 
-### [[Jii.base.Query.groupBy()]] <span id="group-by"></span>
+### [[Jii.data.Query.groupBy()]] <span id="group-by"></span>
 
-Метод [[Jii.base.Query.orderBy()]] добавляет часть `GROUP BY` к SQL запросу. Например,
+Метод [[Jii.data.Query.orderBy()]] добавляет часть `GROUP BY` к SQL запросу. Например,
 
 ```js
 // ... GROUP BY `id`, `status`
@@ -338,7 +338,7 @@ query.groupBy(['id', 'status']);
 query.groupBy('id, status');
 ```
 
-Вы можете использовать метод [[Jii.base.Query.addGroupBy()]] для добавления дополнительных колонок к части `GROUP BY`.
+Вы можете использовать метод [[Jii.data.Query.addGroupBy()]] для добавления дополнительных колонок к части `GROUP BY`.
 Например,
 
 ```js
@@ -347,17 +347,17 @@ query.groupBy(['id', 'status'])
 ```
 
 
-### [[Jii.base.Query.having()]] <span id="having"></span>
+### [[Jii.data.Query.having()]] <span id="having"></span>
 
-Метод [[Jii.base.Query.having()]] определяет часть `HAVING` SQL выражения. Этот метод работает так же, как метод
-[[Jii.base.Query.where()]]. Например,
+Метод [[Jii.data.Query.having()]] определяет часть `HAVING` SQL выражения. Этот метод работает так же, как метод
+[[Jii.data.Query.where()]]. Например,
 
 ```js
 // ... HAVING `status` = 1
 query.having({status: 1});
 ```
 
-Добавляйте дополнительные условия с помощью методов [[Jii.base.Query.andHaving()]] или [[Jii.base.Query.orHaving()]].
+Добавляйте дополнительные условия с помощью методов [[Jii.data.Query.andHaving()]] или [[Jii.data.Query.orHaving()]].
 Например,
 
 ```js
@@ -367,9 +367,9 @@ query.having({status: 1})
 ```
 
 
-### [[Jii.base.Query.limit()]] and [[Jii.base.Query.offset()]] <span id="limit-offset"></span>
+### [[Jii.data.Query.limit()]] and [[Jii.data.Query.offset()]] <span id="limit-offset"></span>
 
-Методы [[Jii.base.Query.limit()]] и [[Jii.base.Query.offset()]] наполняют части `LIMIT`
+Методы [[Jii.data.Query.limit()]] и [[Jii.data.Query.offset()]] наполняют части `LIMIT`
 и `OFFSET` SQL выражения. Например,
  
 ```js
@@ -380,9 +380,9 @@ query.limit(10).offset(20);
 Если вы передадите неправильные значения `limit` и `offset`, то они будут проигнорированы.
 
 
-### [[Jii.base.Query.join()]] <span id="join"></span>
+### [[Jii.data.Query.join()]] <span id="join"></span>
 
-Метод [[Jii.base.Query.join()]] наполняет часть `JOIN` SQL выражения. Например,
+Метод [[Jii.data.Query.join()]] наполняет часть `JOIN` SQL выражения. Например,
  
 ```js
 // ... LEFT JOIN `post` ON `post`.`user_id` = `user`.`id`
@@ -392,14 +392,14 @@ query.join('LEFT JOIN', 'post', 'post.user_id = user.id');
  
 - `type`: тип, например, `'INNER JOIN'`, `'LEFT JOIN'`.
 - `table`: имя присоединяемой таблицы.
-- `on`: (необязательный) условие, часть `ON` SQL выражения. Синтаксис аналогичен методу [[Jii.base.Query.where()]].
+- `on`: (необязательный) условие, часть `ON` SQL выражения. Синтаксис аналогичен методу [[Jii.data.Query.where()]].
 - `params`: (необязательный), параметры условия (`ON` части).
 
 Вы можете использовать следующие методы, для указания `INNER JOIN`, `LEFT JOIN` и `RIGHT JOIN` соответственно.
 
-- [[Jii.base.Query.innerJoin()]]
-- [[Jii.base.Query.leftJoin()]]
-- [[Jii.base.Query.rightJoin()]]
+- [[Jii.data.Query.innerJoin()]]
+- [[Jii.data.Query.leftJoin()]]
+- [[Jii.data.Query.rightJoin()]]
 
 Например,
 
@@ -413,22 +413,22 @@ query.leftJoin('post', 'post.user_id = user.id');
 ключ будет псевдонимом присоединяемого запроса. Например,
 
 ```js
-var subQuery = (new Jii.base.Query()).from('post');
+var subQuery = (new Jii.data.Query()).from('post');
 query.leftJoin({u: subQuery}, 'u.id = author_id');
 ```
 
 
-### [[Jii.base.Query.union()]] <span id="union"></span>
+### [[Jii.data.Query.union()]] <span id="union"></span>
 
-Метод [[Jii.base.Query.union()]] наполняет часть `UNION` SQL запроса. Например,
+Метод [[Jii.data.Query.union()]] наполняет часть `UNION` SQL запроса. Например,
 
 ```js
-var query1 = (new Jii.base.Query())
+var query1 = (new Jii.data.Query())
     .select('id, category_id AS type, name')
     .from('post')
     .limit(10);
 
-var query2 = (new Jii.base.Query())
+var query2 = (new Jii.data.Query())
     .select('id, type, name')
     .from('user')
     .limit(10);
@@ -441,16 +441,16 @@ query1.union(query2);
 
 ## Методы запроса <span id="query-methods"></span>
 
-Класс [[Jii.base.Query]] предоставляет целый набор методов для различных резельтатов запроса:
+Класс [[Jii.data.Query]] предоставляет целый набор методов для различных резельтатов запроса:
 
-- [[Jii.base.Query.all()]]: возвращает массив объектов, где ключами являются названия столбцов.
-- [[Jii.base.Query.one()]]: возвращает первый результат запроса - объект, соответствующий найденной строке.
-- [[Jii.base.Query.column()]]: возвращает массив, соответствующий значениями первого столбца результата запроса.
-- [[Jii.base.Query.scalar()]]: возвращает скалярное значение, расположенное в первой ячейке результата.
-- [[Jii.base.Query.exists()]]: возвращает булевое значение, указывающее содержит ли запрос какой-либо результат.
-- [[Jii.base.Query.count()]]: возвращает количество найденных строк.
-- Другие методы агрегации запрос, в том числе [[Jii.base.Query.sum(q)]], [[Jii.base.Query.average(q)]],
-  [[Jii.base.Query.max(q)]], [[Jii.base.Query.min(q)]]. Параметр `q` является обязательным для этих методов
+- [[Jii.data.Query.all()]]: возвращает массив объектов, где ключами являются названия столбцов.
+- [[Jii.data.Query.one()]]: возвращает первый результат запроса - объект, соответствующий найденной строке.
+- [[Jii.data.Query.column()]]: возвращает массив, соответствующий значениями первого столбца результата запроса.
+- [[Jii.data.Query.scalar()]]: возвращает скалярное значение, расположенное в первой ячейке результата.
+- [[Jii.data.Query.exists()]]: возвращает булевое значение, указывающее содержит ли запрос какой-либо результат.
+- [[Jii.data.Query.count()]]: возвращает количество найденных строк.
+- Другие методы агрегации запрос, в том числе [[Jii.data.Query.sum(q)]], [[Jii.data.Query.average(q)]],
+  [[Jii.data.Query.max(q)]], [[Jii.data.Query.min(q)]]. Параметр `q` является обязательным для этих методов
   и может быть либо именем столбца, либо SQL выражением.
 
 Все эти методы возвращают экземпляр `Promise` для обработки асинхронного ответа
@@ -459,7 +459,7 @@ query1.union(query2);
 
 ```js
 // SELECT `id`, `email` FROM `user`
-(new Jii.base.Query())
+(new Jii.data.Query())
     .select(['id', 'email'])
     .from('user')
     .all().then(function(rows) {
@@ -467,7 +467,7 @@ query1.union(query2);
     });
     
 // SELECT * FROM `user` WHERE `username` LIKE `%test%`
-(new Jii.base.Query())
+(new Jii.data.Query())
     .from('user')
     .where(['like', 'username', 'test'])
     .one().then(function(row) {
@@ -481,7 +481,7 @@ query1.union(query2);
 
 ```js
 // executes SQL: SELECT COUNT(*) FROM `user` WHERE `last_name`=:last_name
-(new Jii.base.Query())
+(new Jii.data.Query())
     .from('user')
     .where({last_name: 'Smith'})
     .count()
@@ -493,24 +493,24 @@ query1.union(query2);
 
 ### Индексы в результатах запроса <span id="indexing-query-results"></span>
 
-Когда вы вызываете [[Jii.base.Query.all()]], то он вернет массив строк, которые индексируются последовательными целыми числами.
+Когда вы вызываете [[Jii.data.Query.all()]], то он вернет массив строк, которые индексируются последовательными целыми числами.
 Но вы можете индексировать их по-разному, например, конкретным значениям столбца или выражения с помощью метода
-[[Jii.base.Query.indexBy()]], вызванного перед методом [[Jii.base.Query.all()]]. В этом случае будет возвращен объект.
+[[Jii.data.Query.indexBy()]], вызванного перед методом [[Jii.data.Query.all()]]. В этом случае будет возвращен объект.
 Например,
 
 ```js
 // returns {100: {id: 100, username: '...', ...}, 101: {...}, 103: {...}, ...}
-var query = (new Jii.base.Query())
+var query = (new Jii.data.Query())
     .from('user')
     .limit(10)
     .indexBy('id')
     .all();
 ```
 
-Для указания сложных индексов, вы можете передать в метод [[Jii.base.Query.indexBy()]] анонимную функцию:
+Для указания сложных индексов, вы можете передать в метод [[Jii.data.Query.indexBy()]] анонимную функцию:
 
 ```js
-var query = (new Jii.base.Query())
+var query = (new Jii.data.Query())
     .from('user')
     .indexBy(function (row) {
         return row.id . row.username;

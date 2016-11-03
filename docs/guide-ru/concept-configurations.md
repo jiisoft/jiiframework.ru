@@ -10,7 +10,7 @@
 
 ```js
 var config = {
-    className: 'Jii.sql.mysql.Connection',
+    className: 'Jii.mysql.Connection',
     host: '127.0.0.1',
     database: 'demo',
     username: 'root',
@@ -98,7 +98,7 @@ var config = {
                 }
             },
             http: {
-                className: 'Jii.httpServer.HttpServer'
+                className: 'Jii.request.http.HttpServer'
             },
             view: {
                 className: 'Jii.view.ServerWebView'

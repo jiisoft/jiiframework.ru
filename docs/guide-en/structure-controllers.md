@@ -3,7 +3,7 @@ Controllers
 
 Controllers are part of the [MVC](http://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller) architecture.
 They are objects of classes extending from [[Jii.base.Controller]] and are responsible for processing requests and
-generating responses. In particular, after process request by HTTP server ([[Jii.httpServer.HttpServer]]),
+generating responses. In particular, after process request by HTTP server ([[Jii.request.http.HttpServer]]),
 controllers will analyze incoming request data, pass them to [models](structure-models), inject model results
 into [views](structure-views), and finally generate outgoing responses.
 

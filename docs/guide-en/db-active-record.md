@@ -30,8 +30,8 @@ db.createCommand('INSERT INTO `customer` (`name`) VALUES (:name)', {
 
 ## Declaring Active Record Classes <span id="declaring-ar-classes"></span>
 
-To get started, declare an Active Record class by extending [[Jii.sql.ActiveRecord]]. Because each Active Record
-class is associated with a database table, in this class you should override the [[Jii.sql.ActiveRecord.tableName()]]
+To get started, declare an Active Record class by extending [[Jii.data.ActiveRecord]]. Because each Active Record
+class is associated with a database table, in this class you should override the [[Jii.data.ActiveRecord.tableName()]]
 method to specify which table the class is associated with.
 
 In the following example, we declare an Active Record class named `app.models.Customer` for the `customer` database table.
@@ -41,11 +41,11 @@ var Jii = require('jii');
 
 /**
  * @class app.models.Customer
- * @extends Jii.sql.ActiveRecord
+ * @extends Jii.data.ActiveRecord
  */
 Jii.defineClass('app.models.Customer', /** @lends app.models.Customer.prototype */{
 
-	__extends: 'Jii.sql.ActiveRecord',
+	__extends: 'Jii.data.ActiveRecord',
 
 	__static: /** @lends app.models.Customer */{
 
@@ -61,14 +61,14 @@ Jii.defineClass('app.models.Customer', /** @lends app.models.Customer.prototype 
 Active Record instances are considered as [models](structure-models). For this reason, we usually put Active Record
 classes under the `app.models` namespace. 
 
-Because [[Jii.sql.ActiveRecord]] extends from [[Jii.base.Model]], it inherits *all* [model](structure-models) features,
+Because [[Jii.data.ActiveRecord]] extends from [[Jii.base.Model]], it inherits *all* [model](structure-models) features,
 such as attributes, validation rules, data serialization, etc.
 
 
 ## Connecting to Databases <span id="db-connection"></span>
 
 By default, Active Record uses the `db` [application component](structure-application-components) 
-as the [[Jii.sql.BaseConnection]] to access and manipulate the database data. As explained in 
+as the [[Jii.data.BaseConnection]] to access and manipulate the database data. As explained in 
 [Database Access Objects](db-dao), you can configure the `db` component in the application configuration like shown
 below,
 
@@ -76,7 +76,7 @@ below,
 application: {
     components: {
         db: {
-            className: 'Jii.sql.mysql.Connection',
+            className: 'Jii.mysql.Connection',
             host: '127.0.0.1',
             database: 'testdb',
             username: 'demo',
@@ -88,16 +88,16 @@ application: {
 ```
 
 If you want to use a different database connection other than the `db` component, you should override 
-the [[Jii.sql.ActiveRecord.getDb()]] method:
+the [[Jii.data.ActiveRecord.getDb()]] method:
 
 ```js
 /**
  * @class app.models.Customer
- * @extends Jii.sql.ActiveRecord
+ * @extends Jii.data.ActiveRecord
  */
 Jii.defineClass('app.models.Customer', /** @lends app.models.Customer.prototype */{
 
-	__extends: 'Jii.sql.ActiveRecord',
+	__extends: 'Jii.data.ActiveRecord',
 
 	__static: /** @lends app.models.Customer */{
 	
@@ -122,12 +122,12 @@ Jii.defineClass('app.models.Customer', /** @lends app.models.Customer.prototype 
 After declaring an Active Record class, you can use it to query data from the corresponding database table.
 The process usually takes the following three steps:
 
-1. Create a new query object by calling the [[Jii.sql.ActiveRecord.find()]] method;
+1. Create a new query object by calling the [[Jii.data.ActiveRecord.find()]] method;
 2. Build the query object by calling [query building methods](db-query-builder#building-queries);
 3. Call a [query method](db-query-builder#query-methods) to retrieve data in terms of Active Record instances.
 
 As you can see, this is very similar to the procedure with [query builder](db-query-builder). The only difference
-is that instead of using the `new` operator to create a query object, you call [[Jii.sql.ActiveRecord.find()]].
+is that instead of using the `new` operator to create a query object, you call [[Jii.data.ActiveRecord.find()]].
 
 Below are some examples showing how to use Active Query to query data:
 
@@ -173,8 +173,8 @@ app.models.Customer.find()
 Because it is a common task to query by primary key values or a set of column values, Jii provides two shortcut
 methods for this purpose:
 
-- [[Jii.sql.ActiveRecord.findOne()]]: returns a single Active Record instance populated with the first row of the query result.
-- [[Jii.sql.ActiveRecord.findAll()]]: returns an array of Active Record instances populated with *all* query result.
+- [[Jii.data.ActiveRecord.findOne()]]: returns a single Active Record instance populated with the first row of the query result.
+- [[Jii.data.ActiveRecord.findAll()]]: returns an array of Active Record instances populated with *all* query result.
 
 Both methods can take one of the following parameter formats:
 
@@ -225,12 +225,12 @@ app.models.Customer
     });
 ```
 
-> Note: Neither [[Jii.sql.ActiveRecord.findOne()]] nor [[Jii.base.ActiveQuery.one()]] will add `LIMIT 1` to 
+> Note: Neither [[Jii.data.ActiveRecord.findOne()]] nor [[Jii.data.ActiveQuery.one()]] will add `LIMIT 1` to 
   the generated SQL statement. If your query may return many rows of data, you should call `limit(1)` explicitly
   to improve the performance, e.g., `app.models.Customer.find().limit(1).one()`.
 
 Besides using query building methods, you can also write raw SQLs to query data and populate the results into
-Active Record objects. You can do so by calling the [[Jii.sql.ActiveRecord.findBySql()]] method:
+Active Record objects. You can do so by calling the [[Jii.data.ActiveRecord.findBySql()]] method:
 
 ```js
 // returns all inactive customers
@@ -243,7 +243,7 @@ app.models.Customer
     });
 ```
 
-Do not call extra query building methods after calling [[Jii.sql.ActiveRecord.findBySql()]] as they
+Do not call extra query building methods after calling [[Jii.data.ActiveRecord.findBySql()]] as they
 will be ignored.
 
 
@@ -268,7 +268,7 @@ app.models.Customer
 
 While retrieving data in terms of Active Record objects is convenient and flexible, it is not always desirable
 when you have to bring back a large amount of data due to the big memory footprint. In this case, you can retrieve
-data using objects by calling [[Jii.base.ActiveQuery.asArray()]] before executing a query method:
+data using objects by calling [[Jii.data.ActiveQuery.asArray()]] before executing a query method:
 
 > По факту, в JavaScript вы получите массив, наполненный объектами. Поэтому правильней было бы назвать метод
 [[asObject()]], и такой метод (синоним) есть. Но для сохранения API Yii 2 оставлен метод [[asArray()]].
@@ -291,7 +291,7 @@ Using Active Record, you can easily save data to database by taking the followin
 
 1. Prepare an Active Record instance
 2. Assign new values to Active Record attributes
-3. Call [[Jii.sql.ActiveRecord.save()]] to save the data into database.
+3. Call [[Jii.data.ActiveRecord.save()]] to save the data into database.
 
 For example,
 
@@ -313,21 +313,21 @@ customer.save().then(function(success) {
 });
 ```
 
-The [[Jii.sql.ActiveRecord.save()]] method can either insert or update a row of data, depending on the state
+The [[Jii.data.ActiveRecord.save()]] method can either insert or update a row of data, depending on the state
 of the Active Record instance. If the instance is newly created via the `new` operator, calling 
-[[Jii.sql.ActiveRecord.save()]] will cause insertion of a new row; If the instance is the result of a query method,
-calling [[Jii.sql.ActiveRecord.save()]] will update the row associated with the instance. 
+[[Jii.data.ActiveRecord.save()]] will cause insertion of a new row; If the instance is the result of a query method,
+calling [[Jii.data.ActiveRecord.save()]] will update the row associated with the instance. 
 
 
 ### Data Validation <span id="data-validation"></span>
 
-Because [[Jii.sql.ActiveRecord]] extends from [[Jii.base.Model]], it shares the same [data validation](input-validation) feature.
-You can declare validation rules by overriding the [[Jii.sql.ActiveRecord.rules()]] method and perform 
-data validation by calling the [[Jii.sql.ActiveRecord.validate()]] method.
+Because [[Jii.data.ActiveRecord]] extends from [[Jii.base.Model]], it shares the same [data validation](input-validation) feature.
+You can declare validation rules by overriding the [[Jii.data.ActiveRecord.rules()]] method and perform 
+data validation by calling the [[Jii.data.ActiveRecord.validate()]] method.
 
-When you call [[Jii.sql.ActiveRecord.save()]], by default it will call [[Jii.sql.ActiveRecord.validate()]]
+When you call [[Jii.data.ActiveRecord.save()]], by default it will call [[Jii.data.ActiveRecord.validate()]]
 automatically. Only when the validation passes, will it actually save the data; otherwise it will simply return false,
-and you can check the [[Jii.sql.ActiveRecord.getErrors()]] property to retrieve the validation error messages.  
+and you can check the [[Jii.data.ActiveRecord.getErrors()]] property to retrieve the validation error messages.  
 
 
 ### Massive Assignment <span id="massive-assignment"></span>
@@ -350,24 +350,24 @@ customer.save();
 
 ### Dirty Attributes <span id="dirty-attributes"></span>
 
-When you call [[Jii.sql.ActiveRecord.save()]] to save an Active Record instance, only *dirty attributes*
+When you call [[Jii.data.ActiveRecord.save()]] to save an Active Record instance, only *dirty attributes*
 are being saved. An attribute is considered *dirty* if its value has been modified since it was loaded from DB or
 saved to DB most recently. Note that data validation will be performed regardless if the Active Record 
 instance has dirty attributes or not.
 
 Active Record automatically maintains the list of dirty attributes. It does so by maintaining an older version of
-the attribute values and comparing them with the latest one. You can call [[Jii.sql.ActiveRecord.getDirtyAttributes()]] 
+the attribute values and comparing them with the latest one. You can call [[Jii.data.ActiveRecord.getDirtyAttributes()]] 
 to get the attributes that are currently dirty.
 
 If you are interested in the attribute values prior to their most recent modification, you may call 
-[[Jii.sql.ActiveRecord.getOldAttributes()]] or [[Jii.sql.ActiveRecord.getOldAttribute()]].
+[[Jii.data.ActiveRecord.getOldAttributes()]] or [[Jii.data.ActiveRecord.getOldAttribute()]].
 
 
 ### Default Attribute Values <span id="default-attribute-values"></span>
 
 Some of your table columns may have default values defined in the database. Sometimes, you may want to pre-populate your
 Web form for an Active Record instance with these default values. To avoid writing the same default values again,
-you can call [[Jii.sql.ActiveRecord.loadDefaultValues()]] to populate the DB-defined default values
+you can call [[Jii.data.ActiveRecord.loadDefaultValues()]] to populate the DB-defined default values
 into the corresponding Active Record attributes:
 
 ```js
@@ -380,7 +380,7 @@ customer.loadDefaultValues();
 ### Updating Multiple Rows <span id="updating-multiple-rows"></span>
 
 The methods described above all work on individual Active Record instances, causing inserting or updating of individual
-table rows. To update multiple rows simultaneously, you should call [[Jii.sql.ActiveRecord.updateAll()]], instead,
+table rows. To update multiple rows simultaneously, you should call [[Jii.data.ActiveRecord.updateAll()]], instead,
 which is a static method.
 
 ```js
@@ -391,7 +391,7 @@ app.models.Customer.updateAll({status: app.models.Customer.STATUS_ACTIVE}, {'lik
 ## Deleting Data <span id="deleting-data"></span>
 
 To delete a single row of data, first retrieve the Active Record instance corresponding to that row and then call
-the [[Jii.sql.ActiveRecord.delete()]] method.
+the [[Jii.data.ActiveRecord.delete()]] method.
 
 ```js
 app.models.Customer
@@ -401,7 +401,7 @@ app.models.Customer
     });
 ```
 
-You can call [[Jii.sql.ActiveRecord.deleteAll()]] to delete multiple or all rows of data. For example,
+You can call [[Jii.data.ActiveRecord.deleteAll()]] to delete multiple or all rows of data. For example,
 
 ```js
 app.models.Customer.deleteAll({status: app.models.Customer.STATUS_INACTIVE});
@@ -426,7 +426,7 @@ The task is as simple as declaring a *relation method* for every interested rela
 ```js
 /**
  * @class app.models.Customer
- * @extends Jii.sql.ActiveRecord
+ * @extends Jii.data.ActiveRecord
  */
 Jii.defineClass('app.models.Customer', /** @lends app.models.Customer.prototype */{
 
@@ -440,7 +440,7 @@ Jii.defineClass('app.models.Customer', /** @lends app.models.Customer.prototype 
 
 /**
  * @class app.models.Order
- * @extends Jii.sql.ActiveRecord
+ * @extends Jii.data.ActiveRecord
  */
 Jii.defineClass('app.models.Order', /** @lends app.models.Order.prototype */{
 
@@ -461,11 +461,11 @@ Note that relation names are *case sensitive*.
 
 While declaring a relation, you should specify the following information:
 
-- the multiplicity of the relation: specified by calling either [[Jii.sql.ActiveRecord.hasMany()]]
-  or [[Jii.sql.ActiveRecord.hasOne()]]. In the above example you may easily read in the relation 
+- the multiplicity of the relation: specified by calling either [[Jii.data.ActiveRecord.hasMany()]]
+  or [[Jii.data.ActiveRecord.hasOne()]]. In the above example you may easily read in the relation 
   declarations that a customer has many orders while an order only has one customer.
 - the name of the related Active Record class: specified as the first parameter to 
-  either [[Jii.sql.ActiveRecord.hasMany()]] or [[Jii.sql.ActiveRecord.hasOne()]].
+  either [[Jii.data.ActiveRecord.hasMany()]] or [[Jii.data.ActiveRecord.hasOne()]].
   A recommended practice is to call `Xyz.className()` to get the class name string so that you can receive
   IDE auto-completion support as well as error detection at compiling stage. 
 - the link between the two types of data: specifies the column(s) through which the two types of data are related.
@@ -478,7 +478,7 @@ While declaring a relation, you should specify the following information:
 After declaring relations, you can access relational data through relation names.
 Если Вы уверены, что связанные данные уже подгружены в Active Record, то можно получить связанные Active Record
 аналогично доступу к [свойствам](concept-properties) объекта через метод [[get()]]. Иначе, лучше использовать метод
-[[Jii.sql.ActiveRecord.load()]] для загрузки связанных данных, который будет всегда возвращать объект `Promise`,
+[[Jii.data.ActiveRecord.load()]] для загрузки связанных данных, который будет всегда возвращать объект `Promise`,
 однако не будет слать лишний запрос в БД, если связь уже была подгружена ранее.
 
 ```js
@@ -494,9 +494,9 @@ app.models.Customer
     });
 ```
 
-If a relation is declared with [[Jii.sql.ActiveRecord.hasMany()]], accessing this relation property
+If a relation is declared with [[Jii.data.ActiveRecord.hasMany()]], accessing this relation property
 will return an array of the related Active Record instances; if a relation is declared with 
-[[Jii.sql.ActiveRecord.hasOne()]], accessing the relation property will return the related
+[[Jii.data.ActiveRecord.hasOne()]], accessing the relation property will return the related
 Active Record instance or null if no related data is found.
 
 When you access a relation property for the first time, a SQL statement will be executed, like shown in the
@@ -511,15 +511,15 @@ a [junction table](https://en.wikipedia.org/wiki/Junction_table) is usually intr
 table and the `item` table may be related via a junction table named `order_item`. One order will then correspond
 to multiple order items, while one product item will also correspond to multiple order items.
 
-When declaring such relations, you would call either [[Jii.base.ActiveQuery.via()]] or [[Jii.base.ActiveQuery.viaTable()]]
-to specify the junction table. The difference between [[Jii.base.ActiveQuery.via()]] and [[Jii.base.ActiveQuery.viaTable()]]
+When declaring such relations, you would call either [[Jii.data.ActiveQuery.via()]] or [[Jii.data.ActiveQuery.viaTable()]]
+to specify the junction table. The difference between [[Jii.data.ActiveQuery.via()]] and [[Jii.data.ActiveQuery.viaTable()]]
 is that the former specifies the junction table in terms of an existing relation name while the latter directly
 the junction table. For example,
 
 ```js
 /**
  * @class app.models.Order
- * @extends Jii.sql.ActiveRecord
+ * @extends Jii.data.ActiveRecord
  */
 Jii.defineClass('app.models.Order', /** @lends app.models.Order.prototype */{
 
@@ -538,7 +538,7 @@ or alternatively,
 ```js
 /**
  * @class app.models.Order
- * @extends Jii.sql.ActiveRecord
+ * @extends Jii.data.ActiveRecord
  */
 Jii.defineClass('app.models.Order', /** @lends app.models.Order.prototype */{
 
@@ -648,7 +648,7 @@ that is declared within a related Active Record class. For example, `app.models.
 relation, and `app.models.Order` is related with `app.models.Item` through the `items` relation. When querying for `app.models.Customer`, you can eagerly
 load `items` using the nested relation notation `orders.items`. 
 
-The following code shows different usage of [[Jii.base.ActiveQuery.with()]]. We assume the `app.models.Customer` class
+The following code shows different usage of [[Jii.data.ActiveQuery.with()]]. We assume the `app.models.Customer` class
 has two relations `orders` and `country`, while the `app.models.Order` class has one relation `items`.
 
 ```js
@@ -708,7 +708,7 @@ app.models.Customer.find()
 
 When customizing the relational query for a relation, you should specify the relation name as an array key
 and use an anonymous function as the corresponding array value. The anonymous function will receive a `query` parameter
-which represents the [[Jii.base.ActiveQuery]] object used to perform the relational query for the relation.
+which represents the [[Jii.data.ActiveQuery]] object used to perform the relational query for the relation.
 In the code example above, we are modifying the relational query by appending an additional condition about order status.
 
 
@@ -720,7 +720,7 @@ to `app.models.Order` via the `orders` relation, and `app.models.Order` is relat
 ```js
 /**
  * @class app.models.Customer
- * @extends Jii.sql.ActiveRecord
+ * @extends Jii.data.ActiveRecord
  */
 Jii.defineClass('app.models.Customer', /** @lends app.models.Customer.prototype */{
 
@@ -734,7 +734,7 @@ Jii.defineClass('app.models.Customer', /** @lends app.models.Customer.prototype 
 
 /**
  * @class app.models.Order
- * @extends Jii.sql.ActiveRecord
+ * @extends Jii.data.ActiveRecord
  */
 Jii.defineClass('app.models.Order', /** @lends app.models.Order.prototype */{
 
@@ -773,13 +773,13 @@ customer data, but they are different objects. When accessing `order.customer`, 
 is executed to populate a new object `customer2`.
 
 To avoid the redundant execution of the last SQL statement in the above example, we should tell Jii that
-`customer` is an *inverse relation* of `orders` by calling the [[Jii.base.ActiveQuery.inverseOf()]] method
+`customer` is an *inverse relation* of `orders` by calling the [[Jii.data.ActiveQuery.inverseOf()]] method
 like shown below:
 
 ```js
 /**
  * @class app.models.Customer
- * @extends Jii.sql.ActiveRecord
+ * @extends Jii.data.ActiveRecord
  */
 Jii.defineClass('app.models.Customer', /** @lends app.models.Customer.prototype */{
 
@@ -837,7 +837,7 @@ app.models.Customer
     });
 ```
 
-Active Record provides the [[Jii.sql.ActiveRecord.link()]] method that allows you to accomplish this task more nicely:
+Active Record provides the [[Jii.data.ActiveRecord.link()]] method that allows you to accomplish this task more nicely:
 
 ```js
 app.models.Customer
@@ -852,7 +852,7 @@ app.models.Customer
     });
 ```
 
-The [[Jii.sql.ActiveRecord.link()]] method requires you to specify the relation name and the target Active Record
+The [[Jii.data.ActiveRecord.link()]] method requires you to specify the relation name and the target Active Record
 instance that the relationship should be established with. The method will modify the values of the attributes that
 link two Active Record instances and save them to the database. In the above example, it will set the `customer_id`
 attribute of the `app.models.Order` instance to be the value of the `id` attribute of the `app.models.Customer` instance and then save it
@@ -860,7 +860,7 @@ to the database.
 
 > Note: You cannot link two newly created Active Record instances.
 
-The benefit of using [[Jii.sql.ActiveRecord.link()]] is even more obvious when a relation is defined via
+The benefit of using [[Jii.data.ActiveRecord.link()]] is even more obvious when a relation is defined via
 a [junction table](#junction-table). For example, you may use the following code to link an `app.models.Order` instance
 with an `app.models.Item` instance:
 
@@ -870,7 +870,7 @@ order.link('items', item);
 
 The above code will automatically insert a row in the `order_item` junction table to relate the order with the item.
 
-The opposite operation to [[Jii.sql.ActiveRecord.link()]] is [[Jii.sql.ActiveRecord.unlink()]]
+The opposite operation to [[Jii.data.ActiveRecord.link()]] is [[Jii.data.ActiveRecord.unlink()]]
 which breaks an existing relationship between two Active Record instances. For example,
 
 ```js
@@ -882,6 +882,6 @@ app.models.Customer.find()
     });
 ```
 
-By default, the [[Jii.sql.ActiveRecord.unlink()]] method will set the foreign key value(s) that specify
+By default, the [[Jii.data.ActiveRecord.unlink()]] method will set the foreign key value(s) that specify
 the existing relationship to be `null`. You may, however, choose to delete the table row that contains the foreign key value
 by passing the `isDelete` parameter as `true` to the method.

@@ -17,14 +17,13 @@ In JavaScript world it is important to avoid global namespace pollution. That is
 
 Jii is distributed as a set of jii-* packages and does not have its own package manager (hi, Meteor). That means you can use any other packages along with Jii.
 
-Jii is splitted into several packages and you can use only ones you need. For example if you want to use ActiveRecord only you can install `jii-ar-sql` and do not have packages related to controllers, views, http server and others.
+Jii is splitted into several packages and you can use only ones you need.
 
 There are main Jii packages:
 - [jii](https://www.npmjs.com/package/jii)
 - [jii-model](https://www.npmjs.com/package/jii-model)
-- [jii-ar-sql](https://www.npmjs.com/package/jii-ar-sql)
-- [jii-httpserver](https://www.npmjs.com/package/jii-httpserver)
-- [jii-view](https://www.npmjs.com/package/jii-view)
+- [jii-mysql](https://www.npmjs.com/package/jii-mysql)
+- [jii-react](https://www.npmjs.com/package/jii-react)
 
 ## Classes and namespaces
 
@@ -45,8 +44,8 @@ Jii.defineClass('app.controllers.SiteController', /** @lends app.controllers.Sit
     /**
      *
      * @param {Jii.base.Context} context
-     * @param {Jii.httpServer.Request} context.request
-     * @param {Jii.httpServer.Response} context.response
+     * @param {Jii.request.http.Request} context.request
+     * @param {Jii.request.http.Response} context.response
      */
     actionIndex: function(context) {
         context.response.data = this.render('index');

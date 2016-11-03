@@ -10,7 +10,7 @@ Currently [MySQL](http://www.mysql.com/) data access object is implemented, it u
 To access database first you need to create connection instance [[Jii.sql.Connection]], open connection for load db schema and establish persistent connection.
 
 ```js
-var db = new Jii.sql.mysql.Connection({
+var db = new Jii.mysql.Connection({
     host: '127.0.0.1',
     database: 'example',
     username: 'root',
@@ -29,7 +29,7 @@ return {
     components: {
         // ...
         db: {
-            className: 'Jii.sql.mysql.Connection',
+            className: 'Jii.mysql.Connection',
             host: '127.0.0.1',
             database: 'example',
             username: 'root',
@@ -44,14 +44,14 @@ return {
 ##SQL query execution <span id="executing-sql-queries"></span>
 
 You can execute SQL query when the database connection instance is already created
-1. Create [[Jii.sql.Command]] instance with plain SQL.
+1. Create [[Jii.data.Command]] instance with plain SQL.
 2. Add optional parameters in query.
-3. Call [[Jii.sql.Command]] any method.
+3. Call [[Jii.data.Command]] any method.
 
 Consider few examples of database querying:
 
 ```js
-var db = new Jii.sql.mysql.Connection(...);
+var db = new Jii.mysql.Connection(...);
 db.open().then(function() {
 
     // Return objects array, each object is row in database,
@@ -107,11 +107,11 @@ db.createCommand('UPDATE post SET status=1 WHERE id=1')
    .execute();
 ```
 
-[[Jii.sql.Command.execute()]] Method returns an object with query's response data. Each of access objects can add it's own specific parameters, and all of them contain:
+[[Jii.data.Command.execute()]] Method returns an object with query's response data. Each of access objects can add it's own specific parameters, and all of them contain:
 * `affectedRows` - Changed rows count.
 * `insertId` - Generated, unique identifier. Return for insert queries for rows which contain Primary Key with AUTO_INCREMENT.
 
-For INSERT, UPDATE and DELETE queries, you can call [[Jii.sql.Command.insert()]] instead of writing plain SQL queries, [[Jii.sql.Command.update()]], [[Jii.sql.Command.delete()]] methods for create
+For INSERT, UPDATE and DELETE queries, you can call [[Jii.data.Command.insert()]] instead of writing plain SQL queries, [[Jii.data.Command.update()]], [[Jii.data.Command.delete()]] methods for create
 appropriate SQL. These methods will work when table's, column's and parameters are correctly escaped.
 
 ```js
@@ -131,7 +131,7 @@ db.createCommand().update('user', {status: 1}, 'age > 30').execute();
 db.createCommand().delete('user', 'status = 0').execute();
 ```
 
-Also you can call [[Jii.sql.Command.batchInsert()]] to insert multiple rows in single query, it will work faster:
+Also you can call [[Jii.data.Command.batchInsert()]] to insert multiple rows in single query, it will work faster:
 
 ```js
 // table name, column names, column values
@@ -146,20 +146,20 @@ db.createCommand().batchInsert('user', ['name', 'age'], {
 
 Jii DAO provides methods which allows to modify database schema:
 
-* [[Jii.sql.Command.createTable()]]: create table
-* [[Jii.sql.Command.renameTable()]]: rename table
-* [[Jii.sql.Command.dropTable()]]: remove table
-* [[Jii.sql.Command.truncateTable()]]: remove table all rows
-* [[Jii.sql.Command.addColumn()]]: add column
-* [[Jii.sql.Command.renameColumn()]]: rename column
-* [[Jii.sql.Command.dropColumn()]]: remove column
-* [[Jii.sql.Command.alterColumn()]]: change column
-* [[Jii.sql.Command.addPrimaryKey()]]: add primary key
-* [[Jii.sql.Command.dropPrimaryKey()]]: remove primary key
-* [[Jii.sql.Command.addForeignKey()]]: add foreign key
-* [[Jii.sql.Command.dropForeignKey()]]: remove foreign key
-* [[Jii.sql.Command.createIndex()]]: create index
-* [[Jii.sql.Command.dropIndex()]]: remove index
+* [[Jii.data.Command.createTable()]]: create table
+* [[Jii.data.Command.renameTable()]]: rename table
+* [[Jii.data.Command.dropTable()]]: remove table
+* [[Jii.data.Command.truncateTable()]]: remove table all rows
+* [[Jii.data.Command.addColumn()]]: add column
+* [[Jii.data.Command.renameColumn()]]: rename column
+* [[Jii.data.Command.dropColumn()]]: remove column
+* [[Jii.data.Command.alterColumn()]]: change column
+* [[Jii.data.Command.addPrimaryKey()]]: add primary key
+* [[Jii.data.Command.dropPrimaryKey()]]: remove primary key
+* [[Jii.data.Command.addForeignKey()]]: add foreign key
+* [[Jii.data.Command.dropForeignKey()]]: remove foreign key
+* [[Jii.data.Command.createIndex()]]: create index
+* [[Jii.data.Command.dropIndex()]]: remove index
 
 These methods usage example:
 
@@ -177,5 +177,5 @@ Also you can get information about table using [[Jii.sql.Connection.getTableSche
 table = db.getTableSchema('post');
 ```
 
-Method returns [[Jii.sql.TableSchema]] object which contains information about table's columns, such as primary keys, foreign keys, etc.
+Method returns [[Jii.data.TableSchema]] object which contains information about table's columns, such as primary keys, foreign keys, etc.
 All these data is used mainly in [query builder](db-query-builder) and [Active Record](db-active-record), to make db queries easier.

@@ -19,7 +19,7 @@ var config = {
 		basePath: __dirname,
 		components: {
 			http: {
-				className: 'Jii.httpServer.HttpServer'
+				className: 'Jii.request.http.HttpServer'
 			}
 		}
 	},

@@ -21,7 +21,7 @@ Below is the list of the predefined core application components. You may configu
 like you do with normal application components. When you are configuring a core application component,
 if you do not specify its class, the default one will be used.
 
-* [[Jii.sql.BaseConnection|db]]: represents a database connection through which you can perform DB queries.
+* [[Jii.data.BaseConnection|db]]: represents a database connection through which you can perform DB queries.
   Note that when you configure this component, you must specify the component class.
 * [[Jii.request.UrlManager|urlManager]]: supports URL parsing and creation.
   Please refer to the [URL Parsing and Generation](runtime-routing) section for more details.

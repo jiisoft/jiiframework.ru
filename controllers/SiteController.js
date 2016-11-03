@@ -42,8 +42,8 @@ var SiteController = Jii.defineClass('app.controllers.SiteController', /** @lend
 	/**
 	 *
 	 * @param {Jii.base.Context} context
-	 * @param {Jii.httpServer.Request} context.request
-	 * @param {Jii.httpServer.Response} context.response
+	 * @param {Jii.request.http.Request} context.request
+	 * @param {Jii.request.http.Response} context.response
 	 */
 	actionIndex: function(context) {
 		var packageItems = PackageItem.requirePackage('jii-boilerplate-hello');
@@ -57,8 +57,8 @@ var SiteController = Jii.defineClass('app.controllers.SiteController', /** @lend
 	/**
 	 *
 	 * @param {Jii.base.Context} context
-	 * @param {Jii.httpServer.Request} context.request
-	 * @param {Jii.httpServer.Response} context.response
+	 * @param {Jii.request.http.Request} context.request
+	 * @param {Jii.request.http.Response} context.response
 	 */
 	actionGuide: function(context) {
 		var mdContent = fs.readFileSync(Jii.getAlias('@app/docs/guide-' + Jii.app.language + '/' + context.request.get('page', 'intro-jii') + '.md')).toString();
@@ -71,8 +71,8 @@ var SiteController = Jii.defineClass('app.controllers.SiteController', /** @lend
 	/**
 	 *
 	 * @param {Jii.base.Context} context
-	 * @param {Jii.httpServer.Request} context.request
-	 * @param {Jii.httpServer.Response} context.response
+	 * @param {Jii.request.http.Request} context.request
+	 * @param {Jii.request.http.Response} context.response
 	 */
 	actionDevelopment: function(context) {
 		var mdContent = fs.readFileSync(Jii.getAlias('@app/docs/development-' + Jii.app.language + '/' + context.request.get('page', 'contribute') + '.md')).toString();
@@ -85,8 +85,8 @@ var SiteController = Jii.defineClass('app.controllers.SiteController', /** @lend
 	/**
 	 *
 	 * @param {Jii.base.Context} context
-	 * @param {Jii.httpServer.Request} context.request
-	 * @param {Jii.httpServer.Response} context.response
+	 * @param {Jii.request.http.Request} context.request
+	 * @param {Jii.request.http.Response} context.response
 	 */
 	actionContact: function(context) {
 		return this.render('contact', context);

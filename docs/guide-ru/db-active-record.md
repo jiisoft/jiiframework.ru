@@ -29,9 +29,9 @@ db.createCommand('INSERT INTO `customer` (`name`) VALUES (:name)', {
 
 ## Объявление классов Active Record <span id="declaring-ar-classes"></span>
 
-Для начала, объявите класс Active Record, унаследовав [[Jii.sql.ActiveRecord]]. Каждый Active Record класс связан
+Для начала, объявите класс Active Record, унаследовав [[Jii.data.ActiveRecord]]. Каждый Active Record класс связан
 с таблицей базы данных, поэтому в этом классе необходимо переопределить статический метод
-[[Jii.sql.ActiveRecord.tableName()]] для указания с какой таблицей связан класс.
+[[Jii.data.ActiveRecord.tableName()]] для указания с какой таблицей связан класс.
 
 В следующем примере, мы объявляем класс с именем `app.models.Customer` для таблицы `customer`.
 
@@ -40,11 +40,11 @@ var Jii = require('jii');
 
 /**
  * @class app.models.Customer
- * @extends Jii.sql.ActiveRecord
+ * @extends Jii.data.ActiveRecord
  */
 Jii.defineClass('app.models.Customer', /** @lends app.models.Customer.prototype */{
 
-	__extends: 'Jii.sql.ActiveRecord',
+	__extends: 'Jii.data.ActiveRecord',
 
 	__static: /** @lends app.models.Customer */{
 
@@ -60,21 +60,21 @@ Jii.defineClass('app.models.Customer', /** @lends app.models.Customer.prototype 
 Класс Active Record является [моделью](structure-models), поэтому обычно мы кладем Active Record классы в
 пространство имен `models`.
 
-Класс [[Jii.sql.ActiveRecord]] наследует [[Jii.base.Model]], это значит, что он наследует *все* возможности
+Класс [[Jii.data.ActiveRecord]] наследует [[Jii.base.Model]], это значит, что он наследует *все* возможности
 [моделей](structure-models), такие как аттрибуты, правила валидации, серелиализация данных и т.д.
 
 
 ## Создание соединения с БД <span id="db-connection"></span>
 
 По-умолчанию, Active Record использует [компонент приложения](structure-application-components) `db`,
-который содержит экземпляр [[Jii.sql.BaseConnection]] для чтения и изменения данных в БД. Как описано в разделе 
+который содержит экземпляр [[Jii.data.BaseConnection]] для чтения и изменения данных в БД. Как описано в разделе 
 [Database Access Objects](db-dao), вы можете сконфигурировать компонент приложения `db` следующим образом: 
 
 ```js
 application: {
     components: {
         db: {
-            className: 'Jii.sql.mysql.Connection',
+            className: 'Jii.mysql.Connection',
             host: '127.0.0.1',
             database: 'testdb',
             username: 'demo',
@@ -86,16 +86,16 @@ application: {
 ```
 
 Если вы хотите использовать другое соединение с базой данных, вы должны переопределить метод
-[[Jii.sql.ActiveRecord.getDb()]]:
+[[Jii.data.ActiveRecord.getDb()]]:
 
 ```js
 /**
  * @class app.models.Customer
- * @extends Jii.sql.ActiveRecord
+ * @extends Jii.data.ActiveRecord
  */
 Jii.defineClass('app.models.Customer', /** @lends app.models.Customer.prototype */{
 
-	__extends: 'Jii.sql.ActiveRecord',
+	__extends: 'Jii.data.ActiveRecord',
 
 	__static: /** @lends app.models.Customer */{
 	
@@ -120,12 +120,12 @@ Jii.defineClass('app.models.Customer', /** @lends app.models.Customer.prototype 
 После объявления класса Active Record, вы можете использовать его для запроса данных из соответствующей таблицы БД.
 Для этого необходимо выполнить три действия:
 
-1. Создать новый объект запроса путем вызова метода [[Jii.sql.ActiveRecord.find()]];
+1. Создать новый объект запроса путем вызова метода [[Jii.data.ActiveRecord.find()]];
 2. Сгенерировать объект запроса, вызывая методы [создания запросов](db-query-builder#building-queries);
 3. Вызвать один из [методов запроса](db-query-builder#query-methods) для получения данных в виде записей Active Record.
 
 Эти действия очень схожи с действиями при работе с [конструктором запросов](db-query-builder). Разница только в том, что
-для создания объекта запроса необходимо вызвать метод [[Jii.sql.ActiveRecord.find()]], а не создавать экземпляр через
+для создания объекта запроса необходимо вызвать метод [[Jii.data.ActiveRecord.find()]], а не создавать экземпляр через
 `new`.
 
 Рассмотрим несколько примеров, показывающие, как использовать Active Query для получения данных:
@@ -171,8 +171,8 @@ app.models.Customer.find()
 
 Для упрощения получения моделей по ID созданы методы:
 
-- [[Jii.sql.ActiveRecord.findOne()]]: Возвращает экземпляр Active Record, соответствующий первой строке результата запроса.
-- [[Jii.sql.ActiveRecord.findAll()]]: Возвращает массив или объект нескольких Active Record, соответствующие строкам результата запроса.
+- [[Jii.data.ActiveRecord.findOne()]]: Возвращает экземпляр Active Record, соответствующий первой строке результата запроса.
+- [[Jii.data.ActiveRecord.findAll()]]: Возвращает массив или объект нескольких Active Record, соответствующие строкам результата запроса.
 
 Оба метода принимают первый агрумент следующего формата:
 
@@ -222,12 +222,12 @@ app.models.Customer
     });
 ```
 
-> Примечание: Ни [[Jii.sql.ActiveRecord.findOne()]], ни [[Jii.base.ActiveQuery.one()]] не добавят `LIMIT 1` в SQL
+> Примечание: Ни [[Jii.data.ActiveRecord.findOne()]], ни [[Jii.data.ActiveQuery.one()]] не добавят `LIMIT 1` в SQL
   выражение. Если Ваш запрос действительно может вернуть множество данных, то необходимо вызвать `limit(1)` для
   установки предела, например `app.models.Customer.find().limit(1).one()`.
 
 Вы можете так же использовать обычные SQL запросы для получения данных и заполнениях их в Active Record.
-Для этого необходимо использовать метод [[Jii.sql.ActiveRecord.findBySql()]]:
+Для этого необходимо использовать метод [[Jii.data.ActiveRecord.findBySql()]]:
 
 ```js
 // Возвращает всех неактивных клиентов
@@ -240,7 +240,7 @@ app.models.Customer
     });
 ```
 
-Не вызывайте методы создания запроса после вызова [[Jii.sql.ActiveRecord.findBySql()]], они будут игнорироваться.
+Не вызывайте методы создания запроса после вызова [[Jii.data.ActiveRecord.findBySql()]], они будут игнорироваться.
 
 
 ## Доступ к данным <span id="accessing-data"></span>
@@ -264,7 +264,7 @@ app.models.Customer
 
 Получение данные как Active Record удобно, но иногда это может быть неоптимально из-за большого потребления памяти,
 которое расходуется на создание экземпляров Active Record.
-В этом случае вы можете получить их как обычные объекты, для этого нужно вызвать метод [[Jii.base.ActiveQuery.asArray()]].
+В этом случае вы можете получить их как обычные объекты, для этого нужно вызвать метод [[Jii.data.ActiveQuery.asArray()]].
 
 > По факту, в JavaScript вы получите массив, наполненный объектами. Поэтому правильней было бы назвать метод
 [[asObject()]], и такой метод (синоним) есть. Но для сохранения API Yii 2 оставлен метод [[asArray()]].
@@ -287,7 +287,7 @@ app.models.Customer.find()
 
 1. Получите или создайте экземпляр Active Record;
 2. Задайте новые значение атрибутам
-3. Вызовите метод [[Jii.sql.ActiveRecord.save()]] для сохранение данных.
+3. Вызовите метод [[Jii.data.ActiveRecord.save()]] для сохранение данных.
 
 Например,
 
@@ -309,7 +309,7 @@ customer.save().then(function(success) {
 });
 ```
 
-Метод [[Jii.sql.ActiveRecord.save()]] может либо добавить, либо обновить данные строки, в зависимости от состояния
+Метод [[Jii.data.ActiveRecord.save()]] может либо добавить, либо обновить данные строки, в зависимости от состояния
 Active Record. Если экземплер был создан с помощью оператора `new`, то метод добавит новую строку. Если экземпляр
 получен через метод [[find()]] и ему подобные или уже был вызван метод [[save()]] ранее, то метод [[save()]]
 обновит данные.
@@ -317,13 +317,13 @@ Active Record. Если экземплер был создан с помощью
 
 ### Валидация данных <span id="data-validation"></span>
 
-Класс [[Jii.sql.ActiveRecord]] наследуется от [[Jii.base.Model]], поэтому в нем доступна [валидация данных](input-validation).
-Вы можете задать правила вализации через переопределение метода [[Jii.sql.ActiveRecord.rules()]] и проверить на правильность
-значений через метод [[Jii.sql.ActiveRecord.validate()]].
+Класс [[Jii.data.ActiveRecord]] наследуется от [[Jii.base.Model]], поэтому в нем доступна [валидация данных](input-validation).
+Вы можете задать правила вализации через переопределение метода [[Jii.data.ActiveRecord.rules()]] и проверить на правильность
+значений через метод [[Jii.data.ActiveRecord.validate()]].
 
-Когда вы вызываете метод [[Jii.sql.ActiveRecord.save()]], по-умолчанию, автоматически будет вызван метод
-[[Jii.sql.ActiveRecord.validate()]]. Только проверенные данные должны сохраняться в БД; Если данные не верны, то метод
-вернет `false` и Вы можете получить ошибку через метод [[Jii.sql.ActiveRecord.getErrors()]] или ему подобные.
+Когда вы вызываете метод [[Jii.data.ActiveRecord.save()]], по-умолчанию, автоматически будет вызван метод
+[[Jii.data.ActiveRecord.validate()]]. Только проверенные данные должны сохраняться в БД; Если данные не верны, то метод
+вернет `false` и Вы можете получить ошибку через метод [[Jii.data.ActiveRecord.getErrors()]] или ему подобные.
 
 
 ### Изменение множества атрибутов <span id="massive-assignment"></span>
@@ -348,21 +348,21 @@ customer.save();
 
 ### Измененные атрибуты <span id="dirty-attributes"></span>
 
-Когда вы вызываете метод [[Jii.sql.ActiveRecord.save()]], происходит сохранение только измененных аттрибутов 
+Когда вы вызываете метод [[Jii.data.ActiveRecord.save()]], происходит сохранение только измененных аттрибутов 
 Active Record. Атрибут считается измененным, если было изменено его значение. Обратите внимание, что проверка
 данных будет выполняться независимо от существования измененных атрибутов.
 
 Active Record автоматически сохраняет список измененных атрибутов. Она сохраняет старые версии атрибутов и сравнивает их
-с последней версией. Вы можете получить измененные атрибуты через метод [[Jii.sql.ActiveRecord.getDirtyAttributes()]].
+с последней версией. Вы можете получить измененные атрибуты через метод [[Jii.data.ActiveRecord.getDirtyAttributes()]].
 
-Для получения старых значений атрибутов, вызывайте метод [[Jii.sql.ActiveRecord.getOldAttributes()]] или
-[[Jii.sql.ActiveRecord.getOldAttribute()]].
+Для получения старых значений атрибутов, вызывайте метод [[Jii.data.ActiveRecord.getOldAttributes()]] или
+[[Jii.data.ActiveRecord.getOldAttribute()]].
 
 
 ### Значения по-умолчанию <span id="default-attribute-values"></span>
 
 Некоторые из ваших столбцов в таблице могут иметь значения по умолчанию, определенные в базе данных. Вы можете
-предварительно заполнить Active Record этими значениями, вызвав метод [[Jii.sql.ActiveRecord.loadDefaultValues()]].
+предварительно заполнить Active Record этими значениями, вызвав метод [[Jii.data.ActiveRecord.loadDefaultValues()]].
 Этот метод синхронный, т.к. схема БД заранее подгружается при открытии соединения.
 
 ```js
@@ -375,7 +375,7 @@ customer.loadDefaultValues();
 ### Обновление нескольких строк <span id="updating-multiple-rows"></span>
 
 Описанные выше методы работают с экземплярамм Active Record. Чтобы обновить несколько строк одновременно, вы можете
-вызвать статический метод [[Jii.sql.ActiveRecord.updateAll()]]:
+вызвать статический метод [[Jii.data.ActiveRecord.updateAll()]]:
 
 ```js
 // UPDATE `customer` SET `status` = 1 WHERE `email` LIKE `%@example.com%`
@@ -386,7 +386,7 @@ app.models.Customer.updateAll({status: app.models.Customer.STATUS_ACTIVE}, {'lik
 ## Удаление данных <span id="deleting-data"></span>
 
 Для удаления строки из таблицы, необходимо у эксемпляра Active Record, соответствующей этой строке, вызвать метод
-[[Jii.sql.ActiveRecord.delete()]].
+[[Jii.data.ActiveRecord.delete()]].
 
 ```js
 app.models.Customer
@@ -396,7 +396,7 @@ app.models.Customer
     });
 ```
 
-Вы можете вызвать статический метод [[Jii.sql.ActiveRecord.deleteAll()]] для удаления множества строк по условию.
+Вы можете вызвать статический метод [[Jii.data.ActiveRecord.deleteAll()]] для удаления множества строк по условию.
 Например,
 
 ```js
@@ -420,7 +420,7 @@ app.models.Customer.deleteAll({status: app.models.Customer.STATUS_INACTIVE});
 ```js
 /**
  * @class app.models.Customer
- * @extends Jii.sql.ActiveRecord
+ * @extends Jii.data.ActiveRecord
  */
 Jii.defineClass('app.models.Customer', /** @lends app.models.Customer.prototype */{
 
@@ -434,7 +434,7 @@ Jii.defineClass('app.models.Customer', /** @lends app.models.Customer.prototype 
 
 /**
  * @class app.models.Order
- * @extends Jii.sql.ActiveRecord
+ * @extends Jii.data.ActiveRecord
  */
 Jii.defineClass('app.models.Order', /** @lends app.models.Order.prototype */{
 
@@ -455,8 +455,8 @@ Jii.defineClass('app.models.Order', /** @lends app.models.Order.prototype */{
 
 В отношении, вы должны указать следующую информацию:
 
-- Кратность связи: указывается при вызове методов [[Jii.sql.ActiveRecord.hasMany()]]
-  или [[Jii.sql.ActiveRecord.hasOne()]]. В приведенном выше примере у клиента много заказов, а у заказа только
+- Кратность связи: указывается при вызове методов [[Jii.data.ActiveRecord.hasMany()]]
+  или [[Jii.data.ActiveRecord.hasOne()]]. В приведенном выше примере у клиента много заказов, а у заказа только
   один клиент.
 - Название связанного класса Active Record: указывается в качестве первого параметра у выше названных методов.
   Рекомендуется получать имя класса через `Xyz.className()`, чтобы, во-первых, проверить существование класса еще
@@ -470,7 +470,7 @@ Jii.defineClass('app.models.Order', /** @lends app.models.Order.prototype */{
 После объявления отношения, вы можете получить доступ к связанным данным через имя отношеня. Если Вы уверены, что
 связанные данные уже подгружены в Active Record, то можно получить связанные Active Record аналогично доступу к
 [свойствам](concept-properties) объекта через метод [[get()]]. Иначе, лучше использовать метод
-[[Jii.sql.ActiveRecord.load()]] для загрузки связанных данных, который будет всегда возвращать объект `Promise`,
+[[Jii.data.ActiveRecord.load()]] для загрузки связанных данных, который будет всегда возвращать объект `Promise`,
 однако не будет слать лишний запрос в БД, если связь уже была подгружена ранее.
 
 ```js
@@ -486,8 +486,8 @@ app.models.Customer
     });
 ```
 
-Если отношение объявлено методом [[Jii.sql.ActiveRecord.hasMany()]], то данные отношения будут представлены массивом
-экземпляров Active Record (или пустым массивом). Если методом [[Jii.sql.ActiveRecord.hasOne()]], то данные отношения
+Если отношение объявлено методом [[Jii.data.ActiveRecord.hasMany()]], то данные отношения будут представлены массивом
+экземпляров Active Record (или пустым массивом). Если методом [[Jii.data.ActiveRecord.hasOne()]], то данные отношения
 будут представлены экземпляром Active Record или `null`, если данные отсутствуют.
 
 При доступе к отношению в первый раз, будет выполнен SQL запрос в БД, как показано в примере выше. При повторном
@@ -500,15 +500,15 @@ app.models.Customer
 [Junction Table](https://en.wikipedia.org/wiki/Junction_table). Например, таблица `order` и таблица `item`
 могут быть связаны с помощью таблицы `order_item`.
 
-При объявлении таких отношений, Вам нужно вызвать методы [[Jii.base.ActiveQuery.via()]] или
-[[Jii.base.ActiveQuery.viaTable()]] с указанием дополнительный таблицы. Разница между этими методами в том,
+При объявлении таких отношений, Вам нужно вызвать методы [[Jii.data.ActiveQuery.via()]] или
+[[Jii.data.ActiveQuery.viaTable()]] с указанием дополнительный таблицы. Разница между этими методами в том,
 что первый указывает таблицу перехода с точки зрения текущего имени отношения, в то время как последний непосредственно
 дополнительную таблицу. Например,
 
 ```js
 /**
  * @class app.models.Order
- * @extends Jii.sql.ActiveRecord
+ * @extends Jii.data.ActiveRecord
  */
 Jii.defineClass('app.models.Order', /** @lends app.models.Order.prototype */{
 
@@ -527,7 +527,7 @@ Jii.defineClass('app.models.Order', /** @lends app.models.Order.prototype */{
 ```js
 /**
  * @class app.models.Order
- * @extends Jii.sql.ActiveRecord
+ * @extends Jii.data.ActiveRecord
  */
 Jii.defineClass('app.models.Order', /** @lends app.models.Order.prototype */{
 
@@ -636,7 +636,7 @@ app.models.Customer.find()
 `app.models.Order` связан с `Item` через `items`. При запросе `app.models.Customer`, вы можете сразу загрузить
 отношение `items` указав в методе [[with()]] `orders.items`.
 
-Следующий код показывает различные использование [[Jii.base.ActiveQuery.with()]]. Мы предполагаем, что класс
+Следующий код показывает различные использование [[Jii.data.ActiveQuery.with()]]. Мы предполагаем, что класс
 `app.models.Customer` имеет два отношения: `orders` и `country`, в то время как класс `app.models.Order` имеет
 одно соотношение - `items`.
 
@@ -698,7 +698,7 @@ app.models.Customer.find()
 
 При настройке реляционного запроса для связи, вы должны указать имя отношения в качестве ключа объекта
 и использовать анонимную функцию как значение соответствующего объекта. Первым агрументом нонимной функции будет
-параметр `query`, который представляет собой объект [[Jii.base.ActiveQuery]].
+параметр `query`, который представляет собой объект [[Jii.data.ActiveQuery]].
 В примере выше, мы изменяем запроса путем добавления дополнительного условия о статусе заказа.
 
 
@@ -711,7 +711,7 @@ app.models.Customer.find()
 ```js
 /**
  * @class app.models.Customer
- * @extends Jii.sql.ActiveRecord
+ * @extends Jii.data.ActiveRecord
  */
 Jii.defineClass('app.models.Customer', /** @lends app.models.Customer.prototype */{
 
@@ -725,7 +725,7 @@ Jii.defineClass('app.models.Customer', /** @lends app.models.Customer.prototype 
 
 /**
  * @class app.models.Order
- * @extends Jii.sql.ActiveRecord
+ * @extends Jii.data.ActiveRecord
  */
 Jii.defineClass('app.models.Order', /** @lends app.models.Order.prototype */{
 
@@ -764,13 +764,13 @@ app.models.Customer
 запрос для получения нового объекта `customer2`.
 
 Чтобы избежать избыточного выполнения последнего SQL запроса в приведенном выше примере, мы должны указать, что
-`customer` является *обратной зависимостью* от `orders` с помощью метода [[Jii.base.ActiveQuery.inverseOf()]].
+`customer` является *обратной зависимостью* от `orders` с помощью метода [[Jii.data.ActiveQuery.inverseOf()]].
 
 
 ```js
 /**
  * @class app.models.Customer
- * @extends Jii.sql.ActiveRecord
+ * @extends Jii.data.ActiveRecord
  */
 Jii.defineClass('app.models.Customer', /** @lends app.models.Customer.prototype */{
 
@@ -828,7 +828,7 @@ app.models.Customer
     });
 ```
 
-Active Record предоставляет метод [[Jii.sql.ActiveRecord.link()]], который позволяет сделать это более изящно:
+Active Record предоставляет метод [[Jii.data.ActiveRecord.link()]], который позволяет сделать это более изящно:
 
 ```js
 app.models.Customer
@@ -843,13 +843,13 @@ app.models.Customer
     });
 ```
 
-Метод [[Jii.sql.ActiveRecord.link()]] ожидает имя отношения и экзепмляр Active Record, с которым должно соединена запись.
+Метод [[Jii.data.ActiveRecord.link()]] ожидает имя отношения и экзепмляр Active Record, с которым должно соединена запись.
 Метод соединит два экземпляра Active Record и сохранит их в БД. В приведенном выше примере, он установит атрибут
 `customer_id` в `app.models.Order`.
 
 > Примечание: Вы не можете связать два только что созданных экземпляров Active Record.
 
-Выгода от использования метода [[Jii.sql.ActiveRecord.link()]] еще более очевидна, когда отношение определяется с помощью
+Выгода от использования метода [[Jii.data.ActiveRecord.link()]] еще более очевидна, когда отношение определяется с помощью
 [дополнительной таблицей](#junction-table). Например, вы можете использовать следующий код, чтобы связать экземпляр
 `app.models.Order` с `app.models.Item`:
 
@@ -859,7 +859,7 @@ order.link('items', item);
 
 Этот код автоматически добавит строку в таблицу `order_item` для создания связи.
 
-Для удаления связи между двумя экземплярами Active Record, используйте метод [[Jii.sql.ActiveRecord.unlink()|unlink()]].
+Для удаления связи между двумя экземплярами Active Record, используйте метод [[Jii.data.ActiveRecord.unlink()|unlink()]].
 Например,
 
 ```js
@@ -871,6 +871,6 @@ app.models.Customer.find()
     });
 ```
 
-По умолчанию, метод [[Jii.sql.ActiveRecord.unlink()]] метод устанавливает значения ключа, определяющего отношение,
+По умолчанию, метод [[Jii.data.ActiveRecord.unlink()]] метод устанавливает значения ключа, определяющего отношение,
 в `null`. Однако, вы можете передать параметр `isDelete` как `true`, чтобы удалить строки с таблицы.
 
