@@ -31,7 +31,6 @@ Jii разбит на несколько пакетов, поэтому его �
 
 Основными пакетамы Jii на данный момент являются:
 - [jii](https://www.npmjs.com/package/jii)
-- [jii-model](https://www.npmjs.com/package/jii-model)
 - [jii-mysql](https://www.npmjs.com/package/jii-mysql)
 - [jii-react](https://www.npmjs.com/package/jii-react)
 

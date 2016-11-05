@@ -21,7 +21,6 @@ Jii is splitted into several packages and you can use only ones you need.
 
 There are main Jii packages:
 - [jii](https://www.npmjs.com/package/jii)
-- [jii-model](https://www.npmjs.com/package/jii-model)
 - [jii-mysql](https://www.npmjs.com/package/jii-mysql)
 - [jii-react](https://www.npmjs.com/package/jii-react)
 

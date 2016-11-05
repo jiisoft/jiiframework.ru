@@ -5,9 +5,7 @@ Initially Jii has been developed to use it everywhere, where Javascript code wor
 Realize that all of the framework's structures like applications, components, controllers, modules, models and views are available in frontend.
 All of these structures are divided and provided as npm module.
 
-- `jii` (or `jii/deps`) - Framework's base classes and structures;
-- `jii-comet` - Comet client;
-- `jii-model` - Model with validators (which are mentioned in rules());
+- `jii` - Framework's base classes and structures;
 - `jii-react` - React components for Jii.
 
 ## Create frontend application

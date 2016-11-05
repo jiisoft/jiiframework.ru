@@ -15,7 +15,6 @@ Boilerplates will help you to grasp the idea and functionality of Jii and to pre
 Currently the following boilerplates are available:
 - [Hello](https://github.com/jiisoft/jii-boilerplate-hello) - Include HTTP server, router, single controller, layout and single view, presenting "Hello World"
 - [Basic](https://github.com/jiisoft/jii-boilerplate-basic) - More complex example, additionaly includes Active Record and Assets Manager.
-- [Chat](https://github.com/jiisoft/jii-boilerplate-chat) (new!) - Full-stack (Jii on server and browser) application example. Simplest chat using commet server (jii-comet).
 
 For boilerplate installation use method bellow:
 
